@@ -11,8 +11,7 @@
 
 可参考issue的[提交方法](https://blog.csdn.net/qq_42475711/article/details/105074169)。
 
-最新版v3.0.1下载：[GitHub（较慢）](https://github.com/FFxFc/TownOfUsX/releases/tag/v3.0.1) [六边云（建议）](http://6hexagon.cloud:5000/sharing/w1xXif2fh) [蓝奏云（建议）](https://laoli233.lanzout.com/b00penl2b) 
-
+最新版v3.0.1下载：[GitHub（较慢）](https://github.com/FFxFc/TownOfUsX/releases/tag/v3.0.1) [六边云（建议）](http://6hexagon.cloud:5000/sharing/w1xXif2fh) [蓝奏云（建议）](https://laoli233.lanzout.com/b00penl2b) [谷歌云（建议）更新最快](https://drive.google.com/drive/folders/1JRH3KqdC8y8BWc7PGZBVi_qJecODx3y7?usp=sharing) 
 在steam中找到`Among Us`的安装目录，将mod解压到此目录即可。
 
 
