@@ -1,21 +1,3 @@
-# TownOfUsX
-原模组项目地址：[这里]（https://github.com/FFxFc/TownOfUs）
-汉化工作室主页：[风尘汉化](https://www.amonguscn.cn)
-汉化版中文论坛：[FiveFireX提供](https://fivefirex.freeflarum.com/)
-汉化版QQ群：`830592624`
-汉化版Discord（加不上QQ时可选）：`https://discord.gg/hK5BAm2gXq`
-
-## 快速开始
-
-欢迎来到职业小镇Xv3.0.1！这是[风尘](https://www.amonguscn.cn/about/)汉化的mod，在玩职业小镇版时遇到任何问题，可以在[GitHub地址](https://github.com/FFxFc/TownOfUsX)提交issue。
-
-可参考issue的[提交方法](https://blog.csdn.net/qq_42475711/article/details/105074169)。
-
-最新版v3.0.1下载：[GitHub（较慢）](https://github.com/FFxFc/TownOfUsX/releases/tag/v3.0.1) [六边云（建议）](http://6hexagon.cloud:5000/sharing/w1xXif2fh) [蓝奏云（建议）](https://laoli233.lanzout.com/b00penl2b) [谷歌云（建议）更新最快](https://drive.google.com/drive/folders/1JRH3KqdC8y8BWc7PGZBVi_qJecODx3y7?usp=sharing) 
-在steam中找到`Among Us`的安装目录，将mod解压到此目录即可。
-
-
-
 ##  模组说明
 职业小镇X说明书
 提示：若连续2把随到同一个职业或者同一个效果，请退出房间重进或关闭游戏重开
