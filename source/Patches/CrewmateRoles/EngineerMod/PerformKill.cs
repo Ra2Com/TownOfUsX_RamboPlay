@@ -66,6 +66,21 @@ namespace TownOfUs.CrewmateRoles.EngineerMod
                     var lights4 = ShipStatus.Instance.Systems[SystemTypes.Electrical].Cast<SwitchSystem>();
                     if (lights4.IsActive) return FixLights(lights4);
                     break;
+                case 5:
+                    var reactor5 = ShipStatus.Instance.Systems[SystemTypes.Reactor].Cast<ReactorSystemType>();
+                    if (reactor5.IsActive) return FixReactor(SystemTypes.Reactor);
+                    var lights5 = ShipStatus.Instance.Systems[SystemTypes.Electrical].Cast<SwitchSystem>();
+                    if (lights5.IsActive) return FixLights(lights5);
+                    var comms5 = ShipStatus.Instance.Systems[SystemTypes.Comms].Cast<HudOverrideSystemType>();
+                    if (comms5.IsActive) return FixComms();
+                    foreach (PlayerTask i in PlayerControl.LocalPlayer.myTasks)
+                    {
+                        if (i.TaskType == Patches.SubmergedCompatibility.RetrieveOxygenMask)
+                        {
+                            return FixSubOxygen();
+                        }
+                    }
+                    break;
             }
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
@@ -105,6 +120,18 @@ namespace TownOfUs.CrewmateRoles.EngineerMod
         private static bool FixOxygen()
         {
             ShipStatus.Instance.RpcRepairSystem(SystemTypes.LifeSupp, 16);
+            return false;
+        }
+
+        private static bool FixSubOxygen()
+        {
+            Patches.SubmergedCompatibility.RepairOxygen();
+
+            var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                (byte)CustomRPC.SubmergedFixOxygen, SendOption.Reliable, -1);
+            writer.Write(PlayerControl.LocalPlayer.NetId);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+
             return false;
         }
 

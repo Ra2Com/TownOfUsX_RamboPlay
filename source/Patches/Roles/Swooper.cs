@@ -14,9 +14,9 @@ namespace TownOfUs.Roles
 
         public Swooper(PlayerControl player) : base(player)
         {
-            Name = "隐身人";
-            ImpostorText = () => "隐身、杀死";
-            TaskText = () => "杀死船员";
+            Name = "Swooper";
+            ImpostorText = () => "Turn invisible temporarily";
+            TaskText = () => "Turn invisible and sneakily kill";
             Color = Patches.Colors.Impostor;
             LastSwooped = DateTime.UtcNow;
             RoleType = RoleEnum.Swooper;
@@ -52,6 +52,10 @@ namespace TownOfUs.Roles
         {
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
+            if (Player.Data.IsDead)
+            {
+                TimeRemaining = 0f;
+            }
             var color = Color.clear;
             if (PlayerControl.LocalPlayer.Data.IsImpostor() || PlayerControl.LocalPlayer.Data.IsDead) color.a = 0.1f;
 

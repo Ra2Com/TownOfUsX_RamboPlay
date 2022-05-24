@@ -10,9 +10,9 @@ namespace TownOfUs.Roles
 
         public Amnesiac(PlayerControl player) : base(player)
         {
-            Name = "失忆者";
-            ImpostorText = () => "回忆死者的职业";
-            TaskText = () => "通过尸体回忆起你是谁\n假任务：";
+            Name = "Amnesiac";
+            ImpostorText = () => "Remember a role of a deceased player";
+            TaskText = () => "Remember who you were.\nFake Tasks:";
             Color = Patches.Colors.Amnesiac;
             RoleType = RoleEnum.Amnesiac;
             AddToRoleHistory(RoleType);

@@ -6,8 +6,8 @@ namespace TownOfUs.Roles.Modifiers
     {
         public Bait(PlayerControl player) : base(player)
         {
-            Name = "诱饵";
-            TaskText = () => "杀死你的人会被迫自报";
+            Name = "Bait";
+            TaskText = () => "Killing you causes an instant self-report";
             Color = Patches.Colors.Bait;
             ModifierType = ModifierEnum.Bait;
         }

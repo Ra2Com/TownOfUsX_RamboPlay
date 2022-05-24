@@ -19,7 +19,7 @@ namespace TownOfUs.CustomOption
 
         public List<CustomButtonOption> SlotButtons = new List<CustomButtonOption>();
 
-        protected internal Import(int id) : base(id, "加载预设设置")
+        protected internal Import(int id) : base(id, "Load Custom Settings")
         {
             Do = ToDo;
         }
@@ -66,7 +66,7 @@ namespace TownOfUs.CustomOption
 
             Loading = SlotButtons[0];
             Loading.Do = () => { };
-            Loading.Setting.Cast<ToggleOption>().TitleText.text = "加载中...";
+            Loading.Setting.Cast<ToggleOption>().TitleText.text = "Loading...";
 
             __instance.Children = new[] {Loading.Setting};
 
@@ -87,10 +87,10 @@ namespace TownOfUs.CustomOption
         protected internal void ToDo()
         {
             SlotButtons.Clear();
-            SlotButtons.Add(new CustomButtonOption(1, "预设 1", delegate { ImportSlot(1); }));
-            SlotButtons.Add(new CustomButtonOption(1, "预设 2", delegate { ImportSlot(2); }));
-            SlotButtons.Add(new CustomButtonOption(1, "预设 3", delegate { ImportSlot(3); }));
-            SlotButtons.Add(new CustomButtonOption(1, "取消", delegate { Cancel(FlashWhite); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 1", delegate { ImportSlot(1); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 2", delegate { ImportSlot(2); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 3", delegate { ImportSlot(3); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Cancel", delegate { Cancel(FlashWhite); }));
 
             var options = CreateOptions();
 

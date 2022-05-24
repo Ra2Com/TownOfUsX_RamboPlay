@@ -8,6 +8,12 @@ using TownOfUs.NeutralRoles.GuardianAngelMod;
 
 namespace TownOfUs
 {
+    public enum DisableSkipButtonMeetings
+    {
+        No,
+        Emergency,
+        Always
+    }
     public static class CustomGameOptions
     {
         public static int MayorOn => (int)Generate.MayorOn.Get();
@@ -137,6 +143,7 @@ namespace TownOfUs
         public static bool AssassinGuessNeutralBenign => Generate.AssassinGuessNeutralBenign.Get();
         public static bool AssassinGuessNeutralEvil => Generate.AssassinGuessNeutralEvil.Get();
         public static bool AssassinGuessNeutralKilling => Generate.AssassinGuessNeutralKilling.Get();
+        public static bool AssassinGuessModifiers => Generate.AssassinGuessModifiers.Get();
         public static bool AssassinCrewmateGuess => Generate.AssassinCrewmateGuess.Get();
         public static int AssassinKills => (int)Generate.AssassinKills.Get();
         public static int NumberOfAssassins => (int)Generate.NumberOfAssassins.Get();
@@ -144,6 +151,7 @@ namespace TownOfUs
         public static bool TraitorCanAssassin => Generate.TraitorCanAssassin.Get();
         public static bool AssassinMultiKill => Generate.AssassinMultiKill.Get();
         public static bool AssassinSnitchViaCrewmate => Generate.AssassinSnitchViaCrewmate.Get();
+        public static bool AssassinateAfterVoting => Generate.AssassinateAfterVoting.Get();
         public static float UnderdogKillBonus => Generate.UnderdogKillBonus.Get();
         public static bool UnderdogIncreasedKC => Generate.UnderdogIncreasedKC.Get();
         public static int PhantomTasksRemaining => (int)Generate.PhantomTasksRemaining.Get();
@@ -152,12 +160,14 @@ namespace TownOfUs
         public static bool VigilanteGuessNeutralKilling => Generate.VigilanteGuessNeutralKilling.Get();
         public static int VigilanteKills => (int)Generate.VigilanteKills.Get();
         public static bool VigilanteMultiKill => Generate.VigilanteMultiKill.Get();
+        public static bool VigilanteAfterVoting => Generate.VigilanteAfterVoting.Get();
         public static int HaunterTasksRemainingClicked => (int)Generate.HaunterTasksRemainingClicked.Get();
         public static int HaunterTasksRemainingAlert => (int)Generate.HaunterTasksRemainingAlert.Get();
         public static bool HaunterRevealsNeutrals => Generate.HaunterRevealsNeutrals.Get();
         public static HaunterCanBeClickedBy HaunterCanBeClickedBy => (HaunterCanBeClickedBy)Generate.HaunterCanBeClickedBy.Get();
         public static float GrenadeCd => Generate.GrenadeCooldown.Get();
         public static float GrenadeDuration => Generate.GrenadeDuration.Get();
+        public static bool GrenadierIndicators => Generate.GrenadierIndicators.Get();
         public static bool GrenadierVent => Generate.GrenadierVent.Get();
         public static float FlashRadius => Generate.FlashRadius.Get();
         public static int LovingImpPercent => (int)Generate.LovingImpPercent.Get();
@@ -193,7 +203,16 @@ namespace TownOfUs
         public static int MaxProtects => (int)Generate.MaxProtects.Get();
         public static ProtectOptions ShowProtect => (ProtectOptions)Generate.ShowProtect.Get();
         public static BecomeOptions GaOnTargetDeath => (BecomeOptions)Generate.GaOnTargetDeath.Get();
+        public static bool GATargetKnows => Generate.GATargetKnows.Get();
+        public static bool GAKnowsTargetRole => Generate.GAKnowsTargetRole.Get();
         public static float MysticArrowDuration => Generate.MysticArrowDuration.Get();
         public static float BlackmailCd => Generate.BlackmailCooldown.Get();
+        public static float GiantSlow => Generate.GiantSlow.Get();
+        public static float FlashSpeed => Generate.FlashSpeed.Get();
+        public static float DiseasedMultiplier => Generate.DiseasedKillMultiplier.Get();
+        public static float BaitMinDelay => Generate.BaitMinDelay.Get();
+        public static float BaitMaxDelay => Generate.BaitMaxDelay.Get();
+        public static DisableSkipButtonMeetings SkipButtonDisable =>
+            (DisableSkipButtonMeetings)Generate.SkipButtonDisable.Get();
     }
 }

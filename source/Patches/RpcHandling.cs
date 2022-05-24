@@ -671,7 +671,7 @@ namespace TownOfUs
                         ga2Role.Protect();
                         break;
                     case CustomRPC.Transport:
-                        Transporter.TransportPlayers(reader.ReadByte(), reader.ReadByte());
+                        Coroutines.Start(Transporter.TransportPlayers(reader.ReadByte(), reader.ReadByte()));
                         break;
                     case CustomRPC.SetUntransportable:
                         if (PlayerControl.LocalPlayer.Is(RoleEnum.Transporter))
@@ -943,6 +943,13 @@ namespace TownOfUs
                         var buggedBodies = Object.FindObjectsOfType<DeadBody>();
                         foreach (var body in buggedBodies)
                             body.gameObject.Destroy();
+                        break;
+                    case CustomRPC.SubmergedFixOxygen:
+                        Patches.SubmergedCompatibility.RepairOxygen();
+                        break;
+                    case CustomRPC.SetPos:
+                        var setplayer = Utils.PlayerById(reader.ReadByte());
+                        setplayer.transform.position = new Vector3(reader.ReadSingle(), reader.ReadSingle(), setplayer.transform.position.z);
                         break;
                 }
             }

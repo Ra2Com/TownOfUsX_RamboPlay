@@ -145,6 +145,32 @@ namespace TownOfUs.Modifiers.AssassinMod
                 }
             }
 
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper) && !player.AmOwner && !PlayerControl.LocalPlayer.Data.IsDead)
+            {
+                
+                SwapVotes.Swap1 = voteArea == SwapVotes.Swap1 ? null : SwapVotes.Swap1;
+                SwapVotes.Swap2 = voteArea == SwapVotes.Swap2 ? null : SwapVotes.Swap2;
+                if (SwapVotes.Swap1 == null || SwapVotes.Swap2 == null)
+                {
+                    var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                        (byte)CustomRPC.SetSwaps, SendOption.Reliable, -1);
+                    writer2.Write(sbyte.MaxValue);
+                    writer2.Write(sbyte.MaxValue);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer2);
+
+                }
+                var swapperrole = Role.GetRole<Swapper>(PlayerControl.LocalPlayer);
+
+                int index;
+                for (index = 0; index < MeetingHud.Instance.playerStates.Length; index++) if (MeetingHud.Instance.playerStates[index].TargetPlayerId == voteArea.TargetPlayerId) break;
+
+                swapperrole.Buttons[index].GetComponent<SpriteRenderer>().sprite = CrewmateRoles.SwapperMod.AddButton.DisabledSprite;
+                swapperrole.ListOfActives[index] = false;
+                swapperrole.Buttons[index].SetActive(false);
+                swapperrole.Buttons[index].GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
+
+            }
+
             foreach (var playerVoteArea in meetingHud.playerStates)
             {
                 if (playerVoteArea.VotedFor != player.PlayerId) continue;

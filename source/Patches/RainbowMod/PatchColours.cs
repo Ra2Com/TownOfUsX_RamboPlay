@@ -11,16 +11,16 @@ namespace TownOfUs.RainbowMod
         {
             var newResult = (int)name switch
             {
-                999990 => "西瓜红",
-                999991 => "巧克力",
-                999992 => "天蓝色",
-                999993 => "浅褐",
-                999994 => "热粉",
-                999995 => "绿松色",
-                999996 => "淡紫",
-                999997 => "橄榄色",
-                999998 => "蔚蓝色",
-                999999 => "彩色",
+                999990 => "Watermelon",
+                999991 => "Chocolate",
+                999992 => "Sky Blue",
+                999993 => "Beige",
+                999994 => "Hot Pink",
+                999995 => "Turquoise",
+                999996 => "Lilac",
+                999997 => "Olive",
+                999998 => "Azure",
+                999999 => "Rainbow",
                 _ => null
             };
             if (newResult != null)

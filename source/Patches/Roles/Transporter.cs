@@ -8,6 +8,8 @@ using TMPro;
 using Reactor.Extensions;
 using System.Collections.Generic;
 using TownOfUs.CrewmateRoles.TransporterMod;
+using TownOfUs.Patches;
+using System.Collections;
 
 namespace TownOfUs.Roles
 {
@@ -31,9 +33,9 @@ namespace TownOfUs.Roles
         
         public Transporter(PlayerControl player) : base(player)
         {
-            Name = "传送者";
-            ImpostorText = () => "相互传送真好玩";
-            TaskText = () => "相互传送！《不 要 乱 传 送》";
+            Name = "Transporter";
+            ImpostorText = () => "Choose two players to swap locations";
+            TaskText = () => "Choose two players to swap locations";
             Color = Patches.Colors.Transporter;
             LastTransported = DateTime.UtcNow;
             RoleType = RoleEnum.Transporter;
@@ -199,7 +201,7 @@ namespace TownOfUs.Roles
                                                     {
                                                         LastTransported = DateTime.UtcNow;
                                                         UsesLeft--;
-                                                        TransportPlayers(TransportPlayer1.PlayerId, TransportPlayer2.PlayerId);
+                                                        Coroutines.Start(TransportPlayers(TransportPlayer1.PlayerId, TransportPlayer2.PlayerId));
                                                         
                                                         var write = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                                                             (byte) CustomRPC.Transport, SendOption.Reliable, -1);
@@ -239,7 +241,7 @@ namespace TownOfUs.Roles
             }
         }
 
-        public static void TransportPlayers(byte player1, byte player2)
+        public static IEnumerator TransportPlayers(byte player1, byte player2)
         {
             var TP1 = Utils.PlayerById(player1);
             var TP2 = Utils.PlayerById(player2);
@@ -257,10 +259,18 @@ namespace TownOfUs.Roles
 
             if (TP1.inVent && PlayerControl.LocalPlayer.PlayerId == TP1.PlayerId)
             {
+                while (SubmergedCompatibility.getInTransition())
+                {
+                    yield return null;
+                }
                 TP1.MyPhysics.ExitAllVents();
             }
             if (TP2.inVent && PlayerControl.LocalPlayer.PlayerId == TP2.PlayerId)
             {
+                while (SubmergedCompatibility.getInTransition())
+                {
+                    yield return null;
+                }
                 TP2.MyPhysics.ExitAllVents();
             }
 
@@ -274,6 +284,23 @@ namespace TownOfUs.Roles
                 TP1.MyRend.flipX = TP2.MyRend.flipX;
                 TP2.NetTransform.SnapTo(new Vector2(TempPosition.x, TempPosition.y + 0.3636f));
                 TP2.MyRend.flipX = TempFacing;
+
+                if (SubmergedCompatibility.isSubmerged())
+                {
+                    if (PlayerControl.LocalPlayer.PlayerId == TP1.PlayerId)
+                    {
+                        SubmergedCompatibility.ChangeFloor(TP1.GetTruePosition().y > -7);
+                        SubmergedCompatibility.CheckOutOfBoundsElevator(PlayerControl.LocalPlayer);
+                    }
+                    if (PlayerControl.LocalPlayer.PlayerId == TP2.PlayerId)
+                    {
+                        SubmergedCompatibility.ChangeFloor(TP2.GetTruePosition().y > -7);
+                        SubmergedCompatibility.CheckOutOfBoundsElevator(PlayerControl.LocalPlayer);
+                    }
+
+                    
+                }
+                
             }
             else if (Player1Body != null && Player2Body == null)
             {
@@ -282,6 +309,16 @@ namespace TownOfUs.Roles
                 var TempPosition = Player1Body.TruePosition;
                 Player1Body.transform.position = TP2.GetTruePosition();
                 TP2.NetTransform.SnapTo(new Vector2(TempPosition.x, TempPosition.y + 0.3636f));
+
+                if (SubmergedCompatibility.isSubmerged())
+                {
+                    if (PlayerControl.LocalPlayer.PlayerId == TP2.PlayerId)
+                    {
+                        SubmergedCompatibility.ChangeFloor(TP2.GetTruePosition().y > -7);
+                        SubmergedCompatibility.CheckOutOfBoundsElevator(PlayerControl.LocalPlayer);
+                    }
+
+                }
             }
             else if (Player1Body == null && Player2Body != null)
             {
@@ -290,6 +327,14 @@ namespace TownOfUs.Roles
                 var TempPosition = TP1.GetTruePosition();
                 TP1.NetTransform.SnapTo(new Vector2(Player2Body.TruePosition.x, Player2Body.TruePosition.y + 0.3636f));
                 Player2Body.transform.position = TempPosition;
+                if (SubmergedCompatibility.isSubmerged())
+                {
+                    if (PlayerControl.LocalPlayer.PlayerId == TP1.PlayerId)
+                    {
+                        SubmergedCompatibility.ChangeFloor(TP1.GetTruePosition().y > -7);
+                        SubmergedCompatibility.CheckOutOfBoundsElevator(PlayerControl.LocalPlayer);
+                    }
+                }
             }
             else if (Player1Body != null && Player2Body != null)
             {

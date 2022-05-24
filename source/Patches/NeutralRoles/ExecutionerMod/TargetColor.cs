@@ -57,28 +57,28 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
             if (CustomGameOptions.OnTargetDead == OnTargetDead.Jester)
             {
                 var jester = new Jester(player);
-                var task = new GameObject("小丑任务").AddComponent<ImportantTextTask>();
+                var task = new GameObject("JesterTask").AddComponent<ImportantTextTask>();
                 task.transform.SetParent(player.transform, false);
                 task.Text =
-                    $"{jester.ColorString}Role: {jester.Name}\n你的目标死了!想办法让自己被投出去!\n假任务:";
+                    $"{jester.ColorString}Role: {jester.Name}\nYour target was killed. Now you get voted out!\nFake Tasks:";
                 player.myTasks.Insert(0, task);
             }
             else if (CustomGameOptions.OnTargetDead == OnTargetDead.Amnesiac)
             {
                 var amnesiac = new Amnesiac(player);
-                var task = new GameObject("失忆者任务").AddComponent<ImportantTextTask>();
+                var task = new GameObject("AmnesiacTask").AddComponent<ImportantTextTask>();
                 task.transform.SetParent(player.transform, false);
                 task.Text =
-                    $"{amnesiac.ColorString}Role: {amnesiac.Name}\n你的目标死了!现在去偷别人的身份吧!\n假任务:";
+                    $"{amnesiac.ColorString}Role: {amnesiac.Name}\nYour target was killed. Now remember a new role!";
                 player.myTasks.Insert(0, task);
             }
             else if (CustomGameOptions.OnTargetDead == OnTargetDead.Survivor)
             {
                 var surv = new Survivor(player);
-                var task = new GameObject("投机主义者任务").AddComponent<ImportantTextTask>();
+                var task = new GameObject("SurvivorTask").AddComponent<ImportantTextTask>();
                 task.transform.SetParent(player.transform, false);
                 task.Text =
-                    $"{surv.ColorString}Role: {surv.Name}\n你的目标被杀了。现在你只需要活着！";
+                    $"{surv.ColorString}Role: {surv.Name}\nYour target was killed. Now you just need to live!";
                 player.myTasks.Insert(0, task);
             }
             else

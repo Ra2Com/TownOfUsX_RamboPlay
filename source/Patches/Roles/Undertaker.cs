@@ -8,9 +8,9 @@ namespace TownOfUs.Roles
 
         public Undertaker(PlayerControl player) : base(player)
         {
-            Name = "送葬者";
-            ImpostorText = () => "拖走尸体";
-            TaskText = () => "拖走尸体（在报告之前）";
+            Name = "Undertaker";
+            ImpostorText = () => "Drag bodies and hide them";
+            TaskText = () => "Drag bodies around to hide them from being reported";
             Color = Patches.Colors.Impostor;
             LastDragged = DateTime.UtcNow;
             RoleType = RoleEnum.Undertaker;

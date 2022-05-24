@@ -12,15 +12,17 @@ namespace TownOfUs
         public static void Postfix(PingTracker __instance)
         {
             var position = __instance.GetComponent<AspectPosition>();
-            position.DistanceFromEdge = new Vector3(3.1f, 0.1f, 0);
+            position.DistanceFromEdge = new Vector3(3.6f, 0.1f, 0);
             position.AdjustPosition();
 
             __instance.text.text =
-                "<color=#00FF00FF>我们小镇 v3.0.1</color>" + "\n" +
+                "<color=#00FF00FF>TownOfUs v" + TownOfUs.VersionString + "</color>\n" +
                 $"Ping: {AmongUsClient.Instance.Ping}ms\n" +
                 (!MeetingHud.Instance
-                    ? "<color=#00FF00FF>原作者：Slushiegoose & Polus.gg & Donners & Term ft. Guus</color>\n" + "<color=#00FF00FF>风尘汉化组汉化</color>"
-                    : "");
+                    ? "<color=#00FF00FF>Modded By: Donners, Term,</color>\n" +
+                    "<color=#00FF00FF>-H & MyDragonBreath</color>\n" : "") +
+                (AmongUsClient.Instance.GameState != InnerNet.InnerNetClient.GameStates.Started
+                    ? "<color=#00FF00FF>Formerly: Slushiegoose & Polus.gg</color>" : "");
         }
     }
 }

@@ -6,9 +6,9 @@ namespace TownOfUs.Roles
     {
         public Underdog(PlayerControl player) : base(player)
         {
-            Name = "潜伏者";
-            ImpostorText = () => "伪装者阵营最后的王牌";
-            TaskText = () => "孤军奋战CD变短！";
+            Name = "Underdog";
+            ImpostorText = () => "Use your comeback power to win";
+            TaskText = () => "long kill cooldown when 2 imps, short when 1 imp";
             Color = Patches.Colors.Impostor;
             RoleType = RoleEnum.Underdog;
             AddToRoleHistory(RoleType);

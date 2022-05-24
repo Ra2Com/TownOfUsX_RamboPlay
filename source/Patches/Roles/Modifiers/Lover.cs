@@ -11,10 +11,10 @@ namespace TownOfUs.Roles.Modifiers
     {
         public Lover(PlayerControl player) : base(player)
         {
-            Name = "恋人";
+            Name = "Lover";
             SymbolName = "♥";
             TaskText = () =>
-                "你与" + OtherLover.Player.name + "相恋了";
+                "You are in Love with " + OtherLover.Player.name;
             Color = Colors.Lovers;
             ModifierType = ModifierEnum.Lover;
         }

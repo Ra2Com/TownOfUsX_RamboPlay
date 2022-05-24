@@ -11,13 +11,13 @@ namespace TownOfUs.Roles
 
         public Executioner(PlayerControl player) : base(player)
         {
-            Name = "行刑者";
+            Name = "Executioner";
             ImpostorText = () =>
-                target == null ? "因为某种原因你没有目标。.. 奇怪的..." : $"Vote {target.name} out";
+                target == null ? "You don't have a target for some reason... weird..." : $"Vote {target.name} out";
             TaskText = () =>
                 target == null
-                    ? "因为某种原因你没有目标。.. 奇怪的..."
-                    : $"吧 {target.name} 投出去\n假任务:";
+                    ? "You don't have a target for some reason... weird..."
+                    : $"Vote {target.name} out\nFake Tasks:";
             Color = Patches.Colors.Executioner;
             RoleType = RoleEnum.Executioner;
             AddToRoleHistory(RoleType);

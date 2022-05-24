@@ -6,7 +6,7 @@ namespace TownOfUs.Roles
     {
         public Impostor(PlayerControl player) : base(player)
         {
-            Name = "伪装者";
+            Name = "Impostor";
             Hidden = true;
             Faction = Faction.Impostors;
             RoleType = RoleEnum.Impostor;
@@ -19,7 +19,7 @@ namespace TownOfUs.Roles
     {
         public Crewmate(PlayerControl player) : base(player)
         {
-            Name = "船员";
+            Name = "Crewmate";
             Hidden = true;
             Faction = Faction.Crewmates;
             RoleType = RoleEnum.Crewmate;

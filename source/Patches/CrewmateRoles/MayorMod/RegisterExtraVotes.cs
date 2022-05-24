@@ -24,7 +24,7 @@ namespace TownOfUs.CrewmateRoles.MayorMod
             if (PlayerControl.LocalPlayer.Data.IsDead) return;
             if (__instance.TimerText.text.Contains("Can Vote")) return;
             var role = Role.GetRole<Mayor>(PlayerControl.LocalPlayer);
-            __instance.TimerText.text = "可以投: " + role.VoteBank + " 次 | " + __instance.TimerText.text;
+            __instance.TimerText.text = "Can Vote: " + role.VoteBank + " time(s) | " + __instance.TimerText.text;
         }
 
         public static Dictionary<byte, int> CalculateAllVotes(MeetingHud __instance)

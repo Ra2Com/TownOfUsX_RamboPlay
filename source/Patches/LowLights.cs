@@ -24,7 +24,16 @@ namespace TownOfUs
                 return false;
             }
 
+
+            if (Patches.SubmergedCompatibility.isSubmerged())
+            {
+                if (player._object.Is(ModifierEnum.Torch)) __result = Mathf.Lerp(__instance.MinLightRadius, __instance.MaxLightRadius, 1) * PlayerControl.GameOptions.CrewLightMod;
+                return false;
+            }
+
+
             var t = switchSystem.Value / 255f;
+            
             if (player._object.Is(ModifierEnum.Torch)) t = 1;
             __result = Mathf.Lerp(__instance.MinLightRadius, __instance.MaxLightRadius, t) *
                        PlayerControl.GameOptions.CrewLightMod;

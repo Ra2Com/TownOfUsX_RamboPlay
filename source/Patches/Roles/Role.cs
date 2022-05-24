@@ -13,6 +13,7 @@ using Random = UnityEngine.Random;
 using TownOfUs.Extensions;
 using Reactor;
 using TownOfUs.ImpostorRoles.TraitorMod;
+using TownOfUs.NeutralRoles.GuardianAngelMod;
 
 namespace TownOfUs.Roles
 {
@@ -103,12 +104,12 @@ namespace TownOfUs.Roles
                 Player.Data.DefaultOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
                 -0.5f
             );
-            return (DeadCriteria() || ImpostorCriteria() || LoverCriteria() || SelfCriteria() || RoleCriteria() || Local);
+            return (DeadCriteria() || ImpostorCriteria() || LoverCriteria() || SelfCriteria() || RoleCriteria() || GuardianAngelCriteria() || Local);
         }
 
         internal virtual bool ColorCriteria()
         {
-            return SelfCriteria() || DeadCriteria() || ImpostorCriteria() || RoleCriteria();
+            return SelfCriteria() || DeadCriteria() || ImpostorCriteria() || RoleCriteria() || GuardianAngelCriteria();
         }
 
         internal virtual bool DeadCriteria()
@@ -143,6 +144,10 @@ namespace TownOfUs.Roles
         internal virtual bool RoleCriteria()
         {
             return PlayerControl.LocalPlayer.Is(ModifierEnum.Sleuth) && Modifier.GetModifier<Sleuth>(PlayerControl.LocalPlayer).Reported.Contains(Player.PlayerId);
+        }
+        internal virtual bool GuardianAngelCriteria()
+        {
+            return PlayerControl.LocalPlayer.Is(RoleEnum.GuardianAngel) && CustomGameOptions.GAKnowsTargetRole && Player == Role.GetRole<GuardianAngel>(PlayerControl.LocalPlayer).target;
         }
 
         protected virtual void IntroPrefix(IntroCutscene._ShowTeam_d__21 __instance)
@@ -200,6 +205,16 @@ namespace TownOfUs.Roles
             if (Player == null) return "";
 
             String PlayerName = Player.GetDefaultOutfit()._playerName;
+            if (CustomGameOptions.GATargetKnows) {
+                foreach (var role in Role.GetRoles(RoleEnum.GuardianAngel))
+                {
+                    var ga = (GuardianAngel)role;
+                    if (Player == ga.target)
+                    {
+                        PlayerName += "<color=#B2FFFFFF> ★</color>";
+                    }
+                }
+            }
 
             var modifier = Modifier.GetModifier(Player);
             if (modifier != null && modifier.GetColoredSymbol() != null)
@@ -652,9 +667,10 @@ namespace TownOfUs.Roles
                         bool impostorFlag = role.ImpostorCriteria();
                         bool loverFlag = role.LoverCriteria();
                         bool roleFlag = role.RoleCriteria();
+                        bool gaFlag = role.GuardianAngelCriteria();
                         player.NameText.text = role.NameText(
                             selfFlag || deadFlag || role.Local,
-                            selfFlag || deadFlag || impostorFlag || roleFlag,
+                            selfFlag || deadFlag || impostorFlag || roleFlag || gaFlag,
                             selfFlag || deadFlag,
                             loverFlag,
                             player
@@ -702,9 +718,10 @@ namespace TownOfUs.Roles
                             bool impostorFlag = role.ImpostorCriteria();
                             bool loverFlag = role.LoverCriteria();
                             bool roleFlag = role.RoleCriteria();
+                            bool gaFlag = role.GuardianAngelCriteria();
                             player.nameText.text = role.NameText(
                                 selfFlag || deadFlag || role.Local,
-                                selfFlag || deadFlag || impostorFlag || roleFlag,
+                                selfFlag || deadFlag || impostorFlag || roleFlag || gaFlag,
                                 selfFlag || deadFlag,
                                 loverFlag
                              );

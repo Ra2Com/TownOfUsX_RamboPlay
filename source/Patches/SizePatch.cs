@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System.Linq;
 using TownOfUs.Extensions;
 using UnityEngine;
 
@@ -20,13 +21,15 @@ namespace TownOfUs.Patches
 
             }
 
-            // This was previously commented out, so I converted it and left it disabled.
-            //var playerBindings = PlayerControl.AllPlayerControls.ToArray().ToDictionary(player => player.PlayerId);
-            //var bodies = Object.FindObjectsOfType<DeadBody>();
-            //foreach (var body in bodies)
-            //{
-            //    body.transform.localScale = playerBindings[body.ParentId].GetAppearance().SizeFactor;
-            //}
+            var playerBindings = PlayerControl.AllPlayerControls.ToArray().ToDictionary(player => player.PlayerId);
+            var bodies = UnityEngine.Object.FindObjectsOfType<DeadBody>();
+            foreach (var body in bodies)
+            {
+                try {
+                    body.transform.localScale = playerBindings[body.ParentId].GetAppearance().SizeFactor;
+                } catch {
+                }
+            }
         }
     }
 }

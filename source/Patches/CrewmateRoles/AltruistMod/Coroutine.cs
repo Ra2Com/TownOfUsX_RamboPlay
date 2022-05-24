@@ -66,6 +66,10 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
             revived.Add(player);
             player.NetTransform.SnapTo(new Vector2(position.x, position.y + 0.3636f));
 
+            if (Patches.SubmergedCompatibility.isSubmerged() && PlayerControl.LocalPlayer.PlayerId == player.PlayerId)
+            {
+                Patches.SubmergedCompatibility.ChangeFloor(player.transform.position.y > -7);
+            }
             if (target != null) Object.Destroy(target.gameObject);
 
             if (player.IsLover() && CustomGameOptions.BothLoversDie)

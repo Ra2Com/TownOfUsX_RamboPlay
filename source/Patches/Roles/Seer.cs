@@ -9,9 +9,9 @@ namespace TownOfUs.Roles
 
         public Seer(PlayerControl player) : base(player)
         {
-            Name = "预言家";
-            ImpostorText = () => "预言职业";
-            TaskText = () => "预言职业并揪出内鬼";
+            Name = "Seer";
+            ImpostorText = () => "Investigate roles";
+            TaskText = () => "Investigate roles and find the Impostor";
             Color = Patches.Colors.Seer;
             LastInvestigated = DateTime.UtcNow;
             RoleType = RoleEnum.Seer;

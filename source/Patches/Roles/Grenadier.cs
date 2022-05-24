@@ -16,12 +16,13 @@ namespace TownOfUs.Roles
         static readonly Color normalVision = new Color(0.83f, 0.83f, 0.83f, 0f);
         static readonly Color dimVision = new Color(0.83f, 0.83f, 0.83f, 0.2f);
         static readonly Color blindVision = new Color(0.83f, 0.83f, 0.83f, 1f);
+        public Il2CppSystem.Collections.Generic.List<PlayerControl> flashedPlayers = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
 
         public Grenadier(PlayerControl player) : base(player)
         {
-            Name = "掷弹兵";
-            ImpostorText = () => "闪瞎他们";
-            TaskText = () => "闪瞎他们";
+            Name = "Grenadier";
+            ImpostorText = () => "Hinder the Crewmates Vision";
+            TaskText = () => "Blind the crewmates to get sneaky kills";
             Color = Patches.Colors.Impostor;
             LastFlashed = DateTime.UtcNow;
             RoleType = RoleEnum.Grenadier;
@@ -58,6 +59,7 @@ namespace TownOfUs.Roles
             if (Enabled != true)
             {
                 closestPlayers = FindClosestPlayers(Player);
+                flashedPlayers = closestPlayers;
             }
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
@@ -182,6 +184,7 @@ namespace TownOfUs.Roles
             LastFlashed = DateTime.UtcNow;
             ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
             DestroyableSingleton<HudManager>.Instance.FullScreen.color = normalVision;
+            flashedPlayers.Clear();
         }
 
         public static Il2CppSystem.Collections.Generic.List<PlayerControl> FindClosestPlayers(PlayerControl player)

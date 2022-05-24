@@ -13,9 +13,9 @@ namespace TownOfUs.Roles
         public bool ButtonUsable => UsesLeft != 0;
         public TimeLord(PlayerControl player) : base(player)
         {
-            Name = "时间之主";
-            ImpostorText = () => "时间回溯";
-            TaskText = () => "时间倒退！";
+            Name = "Time Lord";
+            ImpostorText = () => "Rewind Time";
+            TaskText = () => "Rewind Time!";
             Color = Patches.Colors.TimeLord;
             StartRewind = DateTime.UtcNow.AddSeconds(-10.0f);
             FinishRewind = DateTime.UtcNow;

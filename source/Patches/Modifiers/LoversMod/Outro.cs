@@ -20,7 +20,7 @@ namespace TownOfUs.Modifiers.LoversMod
                 var color = __instance.WinText.color;
                 color.a = 1f;
                 text.color = color;
-                text.text = "独立角色活下来了 但值得么";
+                text.text = "Only neutral roles were left";
                 pos = __instance.WinText.transform.localPosition;
                 pos.y = 1.5f;
                 text.transform.position = pos;
@@ -52,7 +52,7 @@ namespace TownOfUs.Modifiers.LoversMod
             __instance.BackgroundBar.material.color = new Color(1f, 0.4f, 0.8f, 1f);
 
             text = Object.Instantiate(__instance.WinText);
-            text.text = "你们这群单身狗";
+            text.text = "Love couple wins";
             text.color = new Color(1f, 0.4f, 0.8f, 1f);
             pos = __instance.WinText.transform.localPosition;
             pos.y = 1.5f;

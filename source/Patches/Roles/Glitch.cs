@@ -27,7 +27,7 @@ namespace TownOfUs.Roles
 
         public Glitch(PlayerControl owner) : base(owner)
         {
-            Name = "混沌";
+            Name = "The Glitch";
             Color = Patches.Colors.Glitch;
             LastHack = DateTime.UtcNow;
             LastMimic = DateTime.UtcNow;
@@ -40,8 +40,8 @@ namespace TownOfUs.Roles
             IsUsingMimic = false;
             RoleType = RoleEnum.Glitch;
             AddToRoleHistory(RoleType);
-            ImpostorText = () => "你是混沌";
-            TaskText = () => "作为混沌谋杀船员:";
+            ImpostorText = () => "You are the glitch";
+            TaskText = () => "Murder players as the Glitch:";
             Faction = Faction.Neutral;
         }
 
@@ -489,7 +489,8 @@ namespace TownOfUs.Roles
 
                             StopKill.BreakShield(medic, __gInstance.KillTarget.PlayerId,
                                 CustomGameOptions.ShieldBreaks);
-                            Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
+                            if (!__gInstance.Player.IsProtected())
+                                Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
                         }
                         else if (__gInstance.Player.IsShielded())
                         {
@@ -504,10 +505,20 @@ namespace TownOfUs.Roles
 
                             StopKill.BreakShield(medic, __gInstance.Player.PlayerId,
                                 CustomGameOptions.ShieldBreaks);
-                            if (CustomGameOptions.KilledOnAlert)
+                            if (CustomGameOptions.KilledOnAlert && !__gInstance.ClosestPlayer.IsProtected())
                             {
                                 Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                                __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown);
                             }
+                        }
+                        else if (__gInstance.KillTarget.IsProtected())
+                        {
+                            Utils.RpcMurderPlayer(__gInstance.KillTarget, __gInstance.Player);
+                        }
+                        else if (CustomGameOptions.KilledOnAlert && __gInstance.Player.IsProtected())
+                        {
+                            Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                            __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown);
                         }
                         else
                         {
@@ -515,6 +526,7 @@ namespace TownOfUs.Roles
                             if (CustomGameOptions.KilledOnAlert)
                             {
                                 Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
+                                __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown);
                             }
                         }
 
@@ -528,10 +540,23 @@ namespace TownOfUs.Roles
                         writer.Write(medic);
                         writer.Write(__gInstance.KillTarget.PlayerId);
                         AmongUsClient.Instance.FinishRpcImmediately(writer);
+
                         if (CustomGameOptions.ShieldBreaks) __gInstance.LastKill = DateTime.UtcNow;
 
                         StopKill.BreakShield(medic, __gInstance.KillTarget.PlayerId,
                             CustomGameOptions.ShieldBreaks);
+
+                        return;
+                    }
+                    else if (__gInstance.KillTarget.IsVesting())
+                    {
+                        __gInstance.LastKill.AddSeconds(CustomGameOptions.VestKCReset);
+
+                        return;
+                    }
+                    else if (__gInstance.KillTarget.IsProtected())
+                    {
+                        __gInstance.LastKill.AddSeconds(CustomGameOptions.ProtectKCReset);
 
                         return;
                     }

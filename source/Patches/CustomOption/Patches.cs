@@ -153,11 +153,11 @@ namespace TownOfUs.CustomOption
                 if (title != null)
                 {
                     title.GetComponent<TextTranslatorTMP>().Destroy();
-                    title.GetComponent<TMPro.TextMeshPro>().m_text = "我们小镇设置";
+                    title.GetComponent<TMPro.TextMeshPro>().m_text = "Town Of Us Settings";
                 }
                 var sliderInner = gameGroup?.FindChild("SliderInner");
                 if (sliderInner != null)
-                    sliderInner.GetComponent<GameOptionsMenu>().name = "职业小镇游戏设置";
+                    sliderInner.GetComponent<GameOptionsMenu>().name = "TouGameOptionsMenu";
 
                 var ourSettingsButton = Object.Instantiate(obj.gameObject, obj.transform.parent);
                 ourSettingsButton.transform.localPosition = new Vector3(obj.localPosition.x + 0.906f, obj.localPosition.y, obj.localPosition.z);

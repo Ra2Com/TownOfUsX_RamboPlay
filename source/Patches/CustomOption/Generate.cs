@@ -84,6 +84,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption VanillaGame;
         public static CustomNumberOption InitialCooldowns;
         public static CustomToggleOption ParallelMedScans;
+        public static CustomStringOption SkipButtonDisable;
 
         public static CustomHeaderOption TaskTrackingSettings;
         public static CustomToggleOption SeeTasksDuringRound;
@@ -207,6 +208,8 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption AssassinGuessNeutralBenign;
         public static CustomToggleOption AssassinGuessNeutralEvil;
         public static CustomToggleOption AssassinGuessNeutralKilling;
+        public static CustomToggleOption AssassinGuessModifiers;
+        public static CustomToggleOption AssassinateAfterVoting;
 
         public static CustomHeaderOption Underdog;
         public static CustomNumberOption UnderdogKillBonus;
@@ -218,6 +221,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption VigilanteGuessNeutralBenign;
         public static CustomToggleOption VigilanteGuessNeutralEvil;
         public static CustomToggleOption VigilanteGuessNeutralKilling;
+        public static CustomToggleOption VigilanteAfterVoting;
 
         public static CustomHeaderOption Haunter;
         public static CustomNumberOption HaunterTasksRemainingClicked;
@@ -228,6 +232,7 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Grenadier;
         public static CustomNumberOption GrenadeCooldown;
         public static CustomNumberOption GrenadeDuration;
+        public static CustomToggleOption GrenadierIndicators;
         public static CustomToggleOption GrenadierVent;
         public static CustomNumberOption FlashRadius;
 
@@ -275,12 +280,27 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption MaxProtects;
         public static CustomStringOption ShowProtect;
         public static CustomStringOption GaOnTargetDeath;
+        public static CustomToggleOption GATargetKnows;
+        public static CustomToggleOption GAKnowsTargetRole;
 
         public static CustomHeaderOption Mystic;
         public static CustomNumberOption MysticArrowDuration;
 
         public static CustomHeaderOption Blackmailer;
         public static CustomNumberOption BlackmailCooldown;
+
+        public static CustomHeaderOption Giant;
+        public static CustomNumberOption GiantSlow;
+
+        public static CustomHeaderOption Flash;
+        public static CustomNumberOption FlashSpeed;
+
+        public static CustomHeaderOption Diseased;
+        public static CustomNumberOption DiseasedKillMultiplier;
+
+        public static CustomHeaderOption Bait;
+        public static CustomNumberOption BaitMinDelay;
+        public static CustomNumberOption BaitMaxDelay;
 
         public static CustomHeaderOption Lovers;
         public static CustomToggleOption BothLoversDie;
@@ -300,451 +320,474 @@ namespace TownOfUs.CustomOption
             Patches.ImportButton = new Import(num++);
 
 
-            CrewInvestigativeRoles = new CustomHeaderOption(num++, "情报型船员职业");
-            HaunterOn = new CustomNumberOption(true, num++, "<color=#D3D3D3FF>冤魂</color>", 0f, 0f, 100f, 10f,
+            CrewInvestigativeRoles = new CustomHeaderOption(num++, "Crewmate Investigative Roles");
+            HaunterOn = new CustomNumberOption(true, num++, "<color=#D3D3D3FF>Haunter</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            InvestigatorOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>侦探</color>", 0f, 0f, 100f, 10f,
+            InvestigatorOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>Investigator</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            MysticOn = new CustomNumberOption(true, num++, "<color=#4D99E6FF>灵媒</color>", 0f, 0f, 100f, 10f,
+            MysticOn = new CustomNumberOption(true, num++, "<color=#4D99E6FF>Mystic</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            SeerOn = new CustomNumberOption(true, num++, "<color=#FFCC80FF>告密者</color>", 0f, 0f, 100f, 10f,
+            SeerOn = new CustomNumberOption(true, num++, "<color=#FFCC80FF>Seer</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            SnitchOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>预言家</color>", 0f, 0f, 100f, 10f,
+            SnitchOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Snitch</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            SpyOn = new CustomNumberOption(true, num++, "<color=#CCA3CCFF>特工</color>", 0f, 0f, 100f, 10f,
+            SpyOn = new CustomNumberOption(true, num++, "<color=#CCA3CCFF>Spy</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            TrackerOn = new CustomNumberOption(true, num++, "<color=#009900FF>追踪者</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-
-            CrewKillingRoles = new CustomHeaderOption(num++, "击杀型船员职业");
-            SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>警长</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            VeteranOn = new CustomNumberOption(true, num++, "<color=#998040FF>老兵</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            VigilanteOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>侠客</color>", 0f, 0f, 100f, 10f,
+            TrackerOn = new CustomNumberOption(true, num++, "<color=#009900FF>Tracker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            CrewProtectiveRoles = new CustomHeaderOption(num++, "守护型船员职业");
-            AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>殉道师</color>", 0f, 0f, 100f, 10f,
+            CrewKillingRoles = new CustomHeaderOption(num++, "Crewmate Killing Roles");
+            SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            MedicOn = new CustomNumberOption(true, num++, "<color=#006600FF>医生</color>", 0f, 0f, 100f, 10f,
+            VeteranOn = new CustomNumberOption(true, num++, "<color=#998040FF>Veteran</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-
-            CrewSupportRoles = new CustomHeaderOption(num++, "支援型船员职业");
-            EngineerOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>工程师</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>市长</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            MediumOn = new CustomNumberOption(true, num++, "<color=#A680FFFF>通灵师</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            SwapperOn = new CustomNumberOption(true, num++, "<color=#66E666FF>换票师</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            TimeLordOn = new CustomNumberOption(true, num++, "<color=#0000FFFF>时间之主</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            TransporterOn = new CustomNumberOption(true, num++, "<color=#00EEFFFF>传送者</color>", 0f, 0f, 100f, 10f,
+            VigilanteOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Vigilante</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
-
-            NeutralBenignRoles = new CustomHeaderOption(num++, "友善型独立职业");
-            AmnesiacOn = new CustomNumberOption(true, num++, "<color=#80B2FFFF>失忆者</color>", 0f, 0f, 100f, 10f,
+            CrewProtectiveRoles = new CustomHeaderOption(num++, "Crewmate Protective Roles");
+            AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            GuardianAngelOn = new CustomNumberOption(true, num++, "<color=#B3FFFFFF>守护天使</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            SurvivorOn = new CustomNumberOption(true, num++, "<color=#FFE64DFF>投机主义者</color>", 0f, 0f, 100f, 10f,
+            MedicOn = new CustomNumberOption(true, num++, "<color=#006600FF>Medic</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            NeutralEvilRoles = new CustomHeaderOption(num++, "邪恶型独立职业");
-            ExecutionerOn = new CustomNumberOption(true, num++, "<color=#8C4005FF>处刑者</color>", 0f, 0f, 100f, 10f,
+            CrewSupportRoles = new CustomHeaderOption(num++, "Crewmate Support Roles");
+            EngineerOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>Engineer</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            JesterOn = new CustomNumberOption(true, num++, "<color=#FFBFCCFF>小丑</color>", 0f, 0f, 100f, 10f,
+            MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>Mayor</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            PhantomOn = new CustomNumberOption(true, num++, "<color=#662962FF>幻影</color>", 0f, 0f, 100f, 10f,
+            MediumOn = new CustomNumberOption(true, num++, "<color=#A680FFFF>Medium</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-
-            NeutralKillingRoles = new CustomHeaderOption(num++, "击杀型独立职业");
-            ArsonistOn = new CustomNumberOption(true, num++, "<color=#FF4D00FF>纵火犯</color>", 0f, 0f, 100f, 10f,
+            SwapperOn = new CustomNumberOption(true, num++, "<color=#66E666FF>Swapper</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            GlitchOn = new CustomNumberOption(true, num++, "<color=#00FF00FF>混沌</color>", 0f, 0f, 100f, 10f,
+            TimeLordOn = new CustomNumberOption(true, num++, "<color=#0000FFFF>Time Lord</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-
-            ImpostorConcealingRoles = new CustomHeaderOption(num++, "干扰型伪装者职业");
-            GrenadierOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>掷弹兵</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            MorphlingOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>化形者</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            SwooperOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>隐形人</color>", 0f, 0f, 100f, 10f,
+            TransporterOn = new CustomNumberOption(true, num++, "<color=#00EEFFFF>Transporter</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            ImpostorKillingRoles = new CustomHeaderOption(num++, "攻击型伪装者职业");
-            PoisonerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>绝命毒师</color>", 0f, 0f, 100f, 10f,
+
+            NeutralBenignRoles = new CustomHeaderOption(num++, "Neutral Benign Roles");
+            AmnesiacOn = new CustomNumberOption(true, num++, "<color=#80B2FFFF>Amnesiac</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            TraitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>背叛者</color>", 0f, 0f, 100f, 10f,
+            GuardianAngelOn = new CustomNumberOption(true, num++, "<color=#B3FFFFFF>Guardian Angel</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>潜伏者</color>", 0f, 0f, 100f, 10f,
+            SurvivorOn = new CustomNumberOption(true, num++, "<color=#FFE64DFF>Survivor</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+
+            NeutralEvilRoles = new CustomHeaderOption(num++, "Neutral Evil Roles");
+            ExecutionerOn = new CustomNumberOption(true, num++, "<color=#8C4005FF>Executioner</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            JesterOn = new CustomNumberOption(true, num++, "<color=#FFBFCCFF>Jester</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            PhantomOn = new CustomNumberOption(true, num++, "<color=#662962FF>Phantom</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+
+            NeutralKillingRoles = new CustomHeaderOption(num++, "Neutral Killing Roles");
+            ArsonistOn = new CustomNumberOption(true, num++, "<color=#FF4D00FF>Arsonist</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            GlitchOn = new CustomNumberOption(true, num++, "<color=#00FF00FF>The Glitch</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+
+            ImpostorConcealingRoles = new CustomHeaderOption(num++, "Impostor Concealing Roles");
+            GrenadierOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Grenadier</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            MorphlingOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Morphling</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            SwooperOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Swooper</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+
+            ImpostorKillingRoles = new CustomHeaderOption(num++, "Impostor Killing Roles");
+            PoisonerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Poisoner</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            TraitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Traitor</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
             ImpostorSupportRoles = new CustomHeaderOption(num++, "Impostor Support Roles");
-            BlackmailerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>勒索者</color>", 0f, 0f, 100f, 10f,
+            BlackmailerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Blackmailer</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            JanitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>清洁工</color>", 0f, 0f, 100f, 10f,
+            JanitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Janitor</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            MinerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>管道工</color>", 0f, 0f, 100f, 10f,
+            MinerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Miner</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>送葬者</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-
-            CrewmateModifiers = new CustomHeaderOption(num++, "伪装者阵营及混沌职业以外附加效果");
-            BaitOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>诱饵</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            DiseasedOn = new CustomNumberOption(true, num++, "<color=#808080FF>病人</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            TorchOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>火炬</color>", 0f, 0f, 100f, 10f,
+            UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            GlobalModifiers = new CustomHeaderOption(num++, "全体职业附加效果");
-            ButtonBarryOn = new CustomNumberOption(true, num++, "<color=#E600FFFF>按钮人</color>", 0f, 0f, 100f, 10f,
+            CrewmateModifiers = new CustomHeaderOption(num++, "Crewmate Modifiers");
+            BaitOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>Bait</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            DrunkOn = new CustomNumberOption(true, num++, "<color=#758000FF>醉鬼</color>", 0f, 0f, 100f, 10f,
+            DiseasedOn = new CustomNumberOption(true, num++, "<color=#808080FF>Diseased</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            FlashOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>闪电侠</color>", 0f, 0f, 100f, 10f,
+            TorchOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Torch</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            GiantOn = new CustomNumberOption(true, num++, "<color=#FFB34DFF>巨人</color>", 0f, 0f, 100f, 10f,
+
+            GlobalModifiers = new CustomHeaderOption(num++, "Global Modifiers");
+            ButtonBarryOn = new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            LoversOn = new CustomNumberOption(true, num++, "<color=#FF66CCFF>恋人</color>", 0f, 0f, 100f, 10f,
+            DrunkOn = new CustomNumberOption(true, num++, "<color=#758000FF>Drunk</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            SleuthOn = new CustomNumberOption(true, num++, "<color=#803333FF>掘墓人</color>", 0f, 0f, 100f, 10f,
+            FlashOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Flash</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            TiebreakerOn = new CustomNumberOption(true, num++, "<color=#99E699FF>破平者</color>", 0f, 0f, 100f, 10f,
+            GiantOn = new CustomNumberOption(true, num++, "<color=#FFB34DFF>Giant</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            LoversOn = new CustomNumberOption(true, num++, "<color=#FF66CCFF>Lovers</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            SleuthOn = new CustomNumberOption(true, num++, "<color=#803333FF>Sleuth</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            TiebreakerOn = new CustomNumberOption(true, num++, "<color=#99E699FF>Tiebreaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
             CustomGameSettings =
-                new CustomHeaderOption(num++, "自定义游戏设置");
-            ColourblindComms = new CustomToggleOption(num++, "通讯破坏时开启隐蔽效果", false);
-            ImpostorSeeRoles = new CustomToggleOption(num++, "伪装者可见队友职业", false);
+                new CustomHeaderOption(num++, "Custom Game Settings");
+            ColourblindComms = new CustomToggleOption(num++, "Camouflaged Comms", false);
+            ImpostorSeeRoles = new CustomToggleOption(num++, "Impostors Can See The Roles Of Their Team", false);
             DeadSeeRoles =
-                new CustomToggleOption(num++, "灵魂可以看到玩家的职业/投票", false);
+                new CustomToggleOption(num++, "Dead Can See Everyone's Roles/Votes", false);
             MaxNeutralRoles =
-                new CustomNumberOption(num++, "最大独立职业数量", 1f, 1f, 5f, 1f);
-            VanillaGame = new CustomNumberOption(num++, "仅以船员与伪装者开始游戏概率", 0f, 0f, 100f, 5f,
+                new CustomNumberOption(num++, "Max Neutral Roles", 1f, 1f, 5f, 1f);
+            VanillaGame = new CustomNumberOption(num++, "Probability Of A Completely Vanilla Game", 0f, 0f, 100f, 5f,
                 PercentFormat);
             InitialCooldowns =
-                new CustomNumberOption(num++, "游戏开局冷却时间", 10, 10, 30, 2.5f, CooldownFormat);
-            ParallelMedScans = new CustomToggleOption(num++, "可同时进行扫描任务（取消金水任务效果）", false);
-            DisableLevels = new CustomToggleOption(num++, "隐藏等级图标", false);
-            WhiteNameplates = new CustomToggleOption(num++, "隐藏玩家铭牌", false);
+                new CustomNumberOption(num++, "Game Start Cooldowns", 10, 10, 30, 2.5f, CooldownFormat);
+            ParallelMedScans = new CustomToggleOption(num++, "Parallel Medbay Scans", false);
+            SkipButtonDisable = new CustomStringOption(num++, "Disable Meeting Skip Button", new[] { "No", "Emergency", "Always" });
+            DisableLevels = new CustomToggleOption(num++, "Disable Level Icons", false);
+            WhiteNameplates = new CustomToggleOption(num++, "Disable Player Nameplates", false);
 
             TaskTrackingSettings =
-                new CustomHeaderOption(num++, "任务数量显示设置");
-            SeeTasksDuringRound = new CustomToggleOption(num++, "回合中显示任务数量", false);
-            SeeTasksDuringMeeting = new CustomToggleOption(num++, "会议中显示任务数量", false);
-            SeeTasksWhenDead = new CustomToggleOption(num++, "幽灵显示全员任务数量", true);
+                new CustomHeaderOption(num++, "Task Tracking Settings");
+            SeeTasksDuringRound = new CustomToggleOption(num++, "See Tasks During Round", false);
+            SeeTasksDuringMeeting = new CustomToggleOption(num++, "See Tasks During Meetings", false);
+            SeeTasksWhenDead = new CustomToggleOption(num++, "See Tasks When Dead", true);
 
-            Assassin = new CustomHeaderOption(num++, "<color=#FF0000FF>刺客能力</color>");
-            NumberOfAssassins = new CustomNumberOption(num++, "可使用刺客能力的伪装者人数", 1, 0, 3, 1);
-            AmneTurnAssassin = new CustomToggleOption(num++, , "失忆者可获得刺客能力", false);
-            TraitorCanAssassin = new CustomToggleOption(num++, "背叛者可获得刺客能力", false);
-            AssassinKills = new CustomNumberOption(num++, "刺客可猜测次数", 1, 1, 15, 1);
-            AssassinMultiKill = new CustomToggleOption(num++, "每轮会议刺客可以多次使用猜测", false);
-            AssassinCrewmateGuess = new CustomToggleOption(num++, "刺客可以猜测船员阵营职业", false);
-            AssassinSnitchViaCrewmate = new CustomToggleOption(num++, "通过船员猜测刺杀告密者", false);
-            AssassinGuessNeutralBenign = new CustomToggleOption(num++, "刺客可以猜测友善型独立阵营职业", false);
-            AssassinGuessNeutralEvil = new CustomToggleOption(num++, "刺客可以猜测邪恶型独立阵营职业", false);
-            AssassinGuessNeutralKilling = new CustomToggleOption(num++, "刺客可以猜测击杀型独立阵营职业", false);
+            Assassin = new CustomHeaderOption(num++, "<color=#FF0000FF>Assassin Ability</color>");
+            NumberOfAssassins = new CustomNumberOption(num++, "Number Of Assassins", 1, 0, 3, 1);
+            AmneTurnAssassin = new CustomToggleOption(num++, "Amnesiac Turned Impostor Gets Ability", false);
+            TraitorCanAssassin = new CustomToggleOption(num++, "Traitor Gets Ability", false);
+            AssassinKills = new CustomNumberOption(num++, "Number Of Assassin Kills", 1, 1, 15, 1);
+            AssassinMultiKill = new CustomToggleOption(num++, "Assassin Can Kill More Than Once Per Meeting", false);
+            AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin Can Guess \"Crewmate\"", false);
+            AssassinSnitchViaCrewmate = new CustomToggleOption(num++, "Assassinate Snitch Via \"Crewmate\" Guess", false);
+            AssassinGuessNeutralBenign = new CustomToggleOption(num++, "Assassin Can Guess Neutral Benign Roles", false);
+            AssassinGuessNeutralEvil = new CustomToggleOption(num++, "Assassin Can Guess Neutral Evil Roles", false);
+            AssassinGuessNeutralKilling = new CustomToggleOption(num++, "Assassin Can Guess Neutral Killing Roles", false);
+            AssassinGuessModifiers = new CustomToggleOption(num++, "Assassin Can Guess Crewmate Modifiers", false);
+            AssassinateAfterVoting = new CustomToggleOption(num++, "Assassin Can Guess After Voting", false);
 
             Haunter =
-                new CustomHeaderOption(num++, "<color=#d3d3d3FF>冤魂</color>");
+                new CustomHeaderOption(num++, "<color=#d3d3d3FF>Haunter</color>");
             HaunterTasksRemainingClicked =
-                 new CustomNumberOption(num++, "当冤魂剩余多少任务时可被点击", 5, 1, 10, 1);
+                 new CustomNumberOption(num++, "Tasks Remaining When Haunter Can Be Clicked", 5, 1, 10, 1);
             HaunterTasksRemainingAlert =
-                 new CustomNumberOption(num++, "当冤魂剩余多少任务时警告被揭示职业", 1, 1, 5, 1);
-            HaunterRevealsNeutrals = new CustomToggleOption(num++, "冤魂可揭示独立阵营", false);
-            HaunterCanBeClickedBy = new CustomStringOption(num++, "谁可以点击冤魂", new[] { "所有人", "非船员", "仅伪装者" });
+                 new CustomNumberOption(num++, "Tasks Remaining When Alert Is Sent", 1, 1, 5, 1);
+            HaunterRevealsNeutrals = new CustomToggleOption(num++, "Haunter Reveals Neutral Roles", false);
+            HaunterCanBeClickedBy = new CustomStringOption(num++, "Who Can Click Haunter", new[] { "All", "Non-Crew", "Imps Only" });
 
             Investigator =
-                new CustomHeaderOption(num++, "<color=#00B3B3FF>侦探</color>");
-            FootprintSize = new CustomNumberOption(num++, "足迹大小", 4f, 1f, 10f, 1f);
+                new CustomHeaderOption(num++, "<color=#00B3B3FF>Investigator</color>");
+            FootprintSize = new CustomNumberOption(num++, "Footprint Size", 4f, 1f, 10f, 1f);
             FootprintInterval =
-                new CustomNumberOption(num++, "足迹间隔", 0.1f, 0.05f, 1f, 0.05f, CooldownFormat);
-            FootprintDuration = new CustomNumberOption(num++, "足迹持续时间", 10f, 1f, 10f, 0.5f, CooldownFormat);
-            AnonymousFootPrint = new CustomToggleOption(num++, "隐蔽效果足迹", false);
-            VentFootprintVisible = new CustomToggleOption(num++, "可见通风口足迹", false);
+                new CustomNumberOption(num++, "Footprint Interval", 0.1f, 0.05f, 1f, 0.05f, CooldownFormat);
+            FootprintDuration = new CustomNumberOption(num++, "Footprint Duration", 10f, 1f, 10f, 0.5f, CooldownFormat);
+            AnonymousFootPrint = new CustomToggleOption(num++, "Anonymous Footprint", false);
+            VentFootprintVisible = new CustomToggleOption(num++, "Footprint Vent Visible", false);
 
             Mystic =
-                new CustomHeaderOption(num++, "<color=#4D99E6FF>灵媒</color>");
+                new CustomHeaderOption(num++, "<color=#4D99E6FF>Mystic</color>");
             MysticArrowDuration =
-                new CustomNumberOption(num++, "尸体箭头持续时间", 0.1f, 0f, 1f, 0.05f, CooldownFormat);
+                new CustomNumberOption(num++, "Dead Body Arrow Duration", 0.1f, 0f, 1f, 0.05f, CooldownFormat);
 
             Seer =
-                new CustomHeaderOption(num++, "<color=#FFCC80FF>预言家</color>");
+                new CustomHeaderOption(num++, "<color=#FFCC80FF>Seer</color>");
             SeerCooldown =
-                new CustomNumberOption(num++, "预言技能冷却时间", 25f, 10f, 60f, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Seer Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
             CrewKillingRed =
-                new CustomToggleOption(num++, "攻击型船员职业显示为红色", false);
+                new CustomToggleOption(num++, "Crewmate Killing Roles Show Evil", false);
             NeutBenignRed =
-                new CustomToggleOption(num++, "友善型独立职业显示为红色", false);
+                new CustomToggleOption(num++, "Neutral Benign Roles Show Evil", false);
             NeutEvilRed =
-                new CustomToggleOption(num++, "敌对型独立职业显示为红色", false);
+                new CustomToggleOption(num++, "Neutral Evil Roles Show Evil", false);
             NeutKillingRed =
-                new CustomToggleOption(num++, "攻击型独立职业显示为红色", false);
+                new CustomToggleOption(num++, "Neutral Killing Roles Show Evil", false);
 
-            Snitch = new CustomHeaderOption(num++, "<color=#D4AF37FF>告密者</color>");
+            Snitch = new CustomHeaderOption(num++, "<color=#D4AF37FF>Snitch</color>");
             SnitchOnLaunch =
-                new CustomToggleOption(num++, "告密者开局时显示自己职位为告密者", false);
-            SnitchSeesNeutrals = new CustomToggleOption(num++, "告密者揭示独立职业", false);
+                new CustomToggleOption(num++, "Snitch Knows Who They Are On Game Start", false);
+            SnitchSeesNeutrals = new CustomToggleOption(num++, "Snitch Sees Neutral Roles", false);
             SnitchTasksRemaining =
-                 new CustomNumberOption(num++, "剩余多少任务时警告被揭示职业", 1, 1, 5, 1);
-            SnitchSeesImpInMeeting = new CustomToggleOption(num++, "告密者在会议中显示被揭示职业", true);
+                 new CustomNumberOption(num++, "Tasks Remaining When Revealed", 1, 1, 5, 1);
+            SnitchSeesImpInMeeting = new CustomToggleOption(num++, "Snitch Sees Impostors In Meetings", true);
 
             Tracker =
-                new CustomHeaderOption(num++, "<color=#009900FF>追踪者</color>");
+                new CustomHeaderOption(num++, "<color=#009900FF>Tracker</color>");
             UpdateInterval =
-                new CustomNumberOption(num++, "箭头更新间隔", 5f, 0.5f, 15f, 0.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Arrow Update Interval", 5f, 0.5f, 15f, 0.5f, CooldownFormat);
             TrackCooldown =
-                new CustomNumberOption(num++, "追踪技能冷却时间", 25f, 10f, 40f, 2.5f, CooldownFormat);
-            ResetOnNewRound = new CustomToggleOption(num++, "追踪箭头在会议后重置", false);
-            MaxTracks = new CustomNumberOption(num++, "每回合最大追踪人数", 5, 1, 15, 1);
+                new CustomNumberOption(num++, "Track Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
+            ResetOnNewRound = new CustomToggleOption(num++, "Tracker Arrows Reset After Each Round", false);
+            MaxTracks = new CustomNumberOption(num++, "Maximum Number Of Tracks Per Round", 5, 1, 15, 1);
 
             Sheriff =
-                new CustomHeaderOption(num++, "<color=#FFFF00FF>警长</color>");
+                new CustomHeaderOption(num++, "<color=#FFFF00FF>Sheriff</color>");
             SheriffKillOther =
-                new CustomToggleOption(num++, "警长误杀船员时目标也死亡", false);
+                new CustomToggleOption(num++, "Sheriff Miskill Kills Crewmate", false);
             SheriffKillsJester =
-                new CustomToggleOption(num++, "警长可击杀小丑", false);
+                new CustomToggleOption(num++, "Sheriff Kills Jester", false);
             SheriffKillsGlitch =
-                new CustomToggleOption(num++, "警长可击杀混沌", false);
+                new CustomToggleOption(num++, "Sheriff Kills The Glitch", false);
             SheriffKillsExecutioner =
-                new CustomToggleOption(num++, "警长可击杀处刑人", false);
+                new CustomToggleOption(num++, "Sheriff Kills Executioner", false);
             SheriffKillsArsonist =
-                new CustomToggleOption(num++, "警长可击杀纵火犯", false);
+                new CustomToggleOption(num++, "Sheriff Kills Arsonist", false);
             SheriffKillCd =
-                new CustomNumberOption(num++, "警长击杀冷却时间", 25f, 10f, 40f, 2.5f, CooldownFormat);
-            SheriffBodyReport = new CustomToggleOption(num++, "警长可以自刀自报");
+                new CustomNumberOption(num++, "Sheriff Kill Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
+            SheriffBodyReport = new CustomToggleOption(num++, "Sheriff Can Report Who They've Killed");
 
             Veteran =
-                new CustomHeaderOption(num++, "<color=#998040FF>老兵</color>");
+                new CustomHeaderOption(num++, "<color=#998040FF>Veteran</color>");
             KilledOnAlert =
-                new CustomToggleOption(num++, "可在警戒时被击杀", false);
+                new CustomToggleOption(num++, "Can Be Killed On Alert", false);
             AlertCooldown =
-                new CustomNumberOption(num++, "警戒技能冷却时间", 25, 10, 60, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Alert Cooldown", 25, 10, 60, 2.5f, CooldownFormat);
             AlertDuration =
-                new CustomNumberOption(num++, "警戒技能持续时间", 10, 5, 15, 1f, CooldownFormat);
-            MaxAlerts = new CustomNumberOption(num++, "最大警戒技能次数", 5, 1, 15, 1);
+                new CustomNumberOption(num++, "Alert Duration", 10, 5, 15, 1f, CooldownFormat);
+            MaxAlerts = new CustomNumberOption(num++, "Maximum Number Of Alerts", 5, 1, 15, 1);
 
-            Vigilante = new CustomHeaderOption(num++, "<color=#FFFF99FF>侠客</color>");
-            VigilanteKills = new CustomNumberOption(num++, "侠客最大猜测次数", 1, 1, 15, 1);
-            VigilanteMultiKill = new CustomToggleOption(num++, "每轮会议侠客可以多次使用猜测", false);
-            VigilanteGuessNeutralBenign = new CustomToggleOption(num++, "侠客可以猜测友善型独立阵营职业", false);
-            VigilanteGuessNeutralEvil = new CustomToggleOption(num++, "侠客可以猜测邪恶型独立阵营职业", false);
-            VigilanteGuessNeutralKilling = new CustomToggleOption(num++, "侠客可以猜测击杀型独立阵营职业", false);
+            Vigilante = new CustomHeaderOption(num++, "<color=#FFFF99FF>Vigilante</color>");
+            VigilanteKills = new CustomNumberOption(num++, "Number Of Vigilante Kills", 1, 1, 15, 1);
+            VigilanteMultiKill = new CustomToggleOption(num++, "Vigilante Can Kill More Than Once Per Meeting", false);
+            VigilanteGuessNeutralBenign = new CustomToggleOption(num++, "Vigilante Can Guess Neutral Benign Roles", false);
+            VigilanteGuessNeutralEvil = new CustomToggleOption(num++, "Vigilante Can Guess Neutral Evil Roles", false);
+            VigilanteGuessNeutralKilling = new CustomToggleOption(num++, "Vigilante Can Guess Neutral Killing Roles", false);
+            VigilanteAfterVoting = new CustomToggleOption(num++, "Vigilante Can Guess After Voting", false);
 
-            Altruist = new CustomHeaderOption(num++, "<color=#660000FF>殉道师</color>");
+            Altruist = new CustomHeaderOption(num++, "<color=#660000FF>Altruist</color>");
             ReviveDuration =
-                new CustomNumberOption(num++, "殉道者复活时间", 10, 1, 30, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Altruist Revive Duration", 10, 1, 30, 1f, CooldownFormat);
             AltruistTargetBody =
-                new CustomToggleOption(num++, "目标在开始复活时目标尸体消失", false);
+                new CustomToggleOption(num++, "Target's Body Disappears On Beginning Of Revive", false);
 
             Medic =
-                new CustomHeaderOption(num++, "<color=#006600FF>医生</color>");
+                new CustomHeaderOption(num++, "<color=#006600FF>Medic</color>");
             ShowShielded =
-                new CustomStringOption(num++, "谁可以看见护盾效果",
-                    new[] { "仅自己", "医生", "被保护人+医生", "所有人" });
+                new CustomStringOption(num++, "Show Shielded Player",
+                    new[] { "Self", "Medic", "Self+Medic", "Everyone" });
             WhoGetsNotification =
-                new CustomStringOption(num++, "谁可以看到被击杀尝试",
-                    new[] { "医生", "被保护人", "所有人", "没有人" });
-            ShieldBreaks = new CustomToggleOption(num++, "挡刀一次护盾破碎", false);
-            MedicReportSwitch = new CustomToggleOption(num++, "显示尸检报告");
+                new CustomStringOption(num++, "Who Gets Murder Attempt Indicator",
+                    new[] { "Medic", "Shielded", "Everyone", "Nobody" });
+            ShieldBreaks = new CustomToggleOption(num++, "Shield Breaks On Murder Attempt", false);
+            MedicReportSwitch = new CustomToggleOption(num++, "Show Medic Reports");
             MedicReportNameDuration =
-                new CustomNumberOption(num++, "时间内报告会有凶手名字", 0, 0, 60, 2.5f,
+                new CustomNumberOption(num++, "Time Where Medic Will Have Name", 0, 0, 60, 2.5f,
                     CooldownFormat);
             MedicReportColorDuration =
-                new CustomNumberOption(num++, "时间内报告会有凶手颜色类型", 15, 0, 120, 2.5f,
+                new CustomNumberOption(num++, "Time Where Medic Will Have Color Type", 15, 0, 120, 2.5f,
                     CooldownFormat);
 
             Engineer =
-                new CustomHeaderOption(num++, "<color=#FFA60AFF>工程师</color>");
+                new CustomHeaderOption(num++, "<color=#FFA60AFF>Engineer</color>");
             EngineerPer =
-                new CustomStringOption(num++, "工程师修复次数", new[] { "每回合一次", "每游戏一次" });
+                new CustomStringOption(num++, "Engineer Fix Per", new[] { "Round", "Game" });
 
             Mayor =
-                new CustomHeaderOption(num++, "<color=#704FA8FF>市长</color>");
+                new CustomHeaderOption(num++, "<color=#704FA8FF>Mayor</color>");
             MayorVoteBank =
-                new CustomNumberOption(num++, "初始市长票数", 1, 1, 5, 1);
+                new CustomNumberOption(num++, "Initial Mayor Vote Bank", 1, 1, 5, 1);
             MayorAnonymous =
-                new CustomToggleOption(num++, "市长匿名投票", false);
+                new CustomToggleOption(num++, "Mayor Votes Show Anonymous", false);
 
             Medium =
-                new CustomHeaderOption(num++, "<color=#A680FFFF>通灵师</color>");
+                new CustomHeaderOption(num++, "<color=#A680FFFF>Medium</color>");
             MediateCooldown =
-                new CustomNumberOption(num++, "通灵冷却", 10f, 1f, 15f, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Mediate Cooldown", 10f, 1f, 15f, 1f, CooldownFormat);
             ShowMediatePlayer =
-                new CustomToggleOption(num++, "显示通灵目标的外观", true);
+                new CustomToggleOption(num++, "Reveal Appearance Of Mediate Target", true);
             ShowMediumToDead =
-                new CustomToggleOption(num++, "将通灵师展示给通灵目标", true);
+                new CustomToggleOption(num++, "Reveal The Medium To The Mediate Target", true);
             DeadRevealed =
-                new CustomStringOption(num++, "通灵透露的信息", new[] { "Oldest Dead", "Newest Dead", "All Dead" });
+                new CustomStringOption(num++, "Who Is Revealed With Mediate", new[] { "Oldest Dead", "Newest Dead", "All Dead" });
 
             Swapper =
-                new CustomHeaderOption(num++, "<color=#66E666FF>换票师</color>");
+                new CustomHeaderOption(num++, "<color=#66E666FF>Swapper</color>");
             SwapperButton =
-                new CustomToggleOption(num++, "换票师可以召开紧急会议", true);
+                new CustomToggleOption(num++, "Swapper Can Button", true);
 
             TimeLord =
-                new CustomHeaderOption(num++, "<color=#0000FFFF>时间之主</color>");
-            RewindRevive = new CustomToggleOption(num++, "回溯时可复活死者", false);
-            RewindDuration = new CustomNumberOption(num++, "回溯时间", 2f, 2f, 5f, 0.5f, CooldownFormat);
-            RewindCooldown = new CustomNumberOption(num++, "回溯技能冷却", 25f, 10f, 60f, 2.5f, CooldownFormat);
+                new CustomHeaderOption(num++, "<color=#0000FFFF>Time Lord</color>");
+            RewindRevive = new CustomToggleOption(num++, "Revive During Rewind", false);
+            RewindDuration = new CustomNumberOption(num++, "Rewind Duration", 2f, 2f, 5f, 0.5f, CooldownFormat);
+            RewindCooldown = new CustomNumberOption(num++, "Rewind Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
             RewindMaxUses =
-                 new CustomNumberOption(num++, "回溯技能使用次数", 5, 1, 15, 1);
+                 new CustomNumberOption(num++, "Maximum Number Of Rewinds", 5, 1, 15, 1);
             TimeLordVitals =
-                new CustomToggleOption(num++, "时间之主可使用心跳监测器", false);
+                new CustomToggleOption(num++, "Time Lord Can Use Vitals", false);
 
             Transporter =
-                new CustomHeaderOption(num++, "<color=#00EEFFFF>传送师</color>");
+                new CustomHeaderOption(num++, "<color=#00EEFFFF>Transporter</color>");
             TransportCooldown =
-                new CustomNumberOption(num++, "传送冷却", 25f, 10f, 60f, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Transport Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
             TransportMaxUses =
-                new CustomNumberOption(num++, "最多传送次数", 5, 1, 15, 1);
+                new CustomNumberOption(num++, "Maximum Number Of Transports", 5, 1, 15, 1);
             TransporterVitals =
-                new CustomToggleOption(num++, "传送师可使用心跳监测器", false);
+                new CustomToggleOption(num++, "Transporter Can Use Vitals", false);
 
-            Amnesiac = new CustomHeaderOption(num++, "<color=#80B2FFFF>失忆者</color>");
+            Amnesiac = new CustomHeaderOption(num++, "<color=#80B2FFFF>Amnesiac</color>");
             RememberArrows =
-                new CustomToggleOption(num++, "失忆者显示尸体箭头", false);
+                new CustomToggleOption(num++, "Amnesiac Gets Arrows Pointing To Dead Bodies", false);
             RememberArrowDelay =
-                new CustomNumberOption(num++, "有尸体后箭出现时间", 5f, 0f, 15f, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Time After Death Arrow Appears", 5f, 0f, 15f, 1f, CooldownFormat);
 
             GuardianAngel =
-                new CustomHeaderOption(num++, "<color=#B3FFFFFF>守护天使</color>");
+                new CustomHeaderOption(num++, "<color=#B3FFFFFF>Guardian Angel</color>");
             ProtectCd =
-                new CustomNumberOption(num++, "守护冷却", 25, 10, 60, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Protect Cooldown", 25, 10, 60, 2.5f, CooldownFormat);
             ProtectDuration =
-                new CustomNumberOption(num++, "守护持续时间", 10, 5, 15, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Protect Duration", 10, 5, 15, 1f, CooldownFormat);
             ProtectKCReset =
-                new CustomNumberOption(num++, "受保护时被杀死时凶手冷却重置", 2.5f, 0f, 15f, 0.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Kill Cooldown Reset When Protected", 2.5f, 0f, 15f, 0.5f, CooldownFormat);
             MaxProtects =
-                new CustomNumberOption(num++, "最大保护次数", 5, 1, 15, 1);
+                new CustomNumberOption(num++, "Maximum Number Of Protects", 5, 1, 15, 1);
             ShowProtect =
-                new CustomStringOption(num++, "展示被保护玩家",
-                    new[] { "自己", "守护天使", "自己+守护天使", "所有人" });
-            GaOnTargetDeath = new CustomStringOption(num++, "守护天使在目标上死亡",
-                new[] { "船员", "失忆者", "投机主义者", "小丑" });
+                new CustomStringOption(num++, "Show Protected Player",
+                    new[] { "Self", "Guardian Angel", "Self+GA", "Everyone" });
+            GaOnTargetDeath = new CustomStringOption(num++, "GA Becomes On Target Dead",
+                new[] { "Crew", "Amnesiac", "Survivor", "Jester" });
+            GATargetKnows =
+                new CustomToggleOption(num++, "Target Knows GA Exists", false);
+            GAKnowsTargetRole =
+                new CustomToggleOption(num++, "GA Knows Targets Role", false);
 
             Survivor =
-                new CustomHeaderOption(num++, "<color=#FFE64DFF>投机主义者</color>");
+                new CustomHeaderOption(num++, "<color=#FFE64DFF>Survivor</color>");
             VestCd =
-                new CustomNumberOption(num++, "背心冷却", 25, 10, 60, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Vest Cooldown", 25, 10, 60, 2.5f, CooldownFormat);
             VestDuration =
-                new CustomNumberOption(num++, "背心持续时间", 10, 5, 15, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Vest Duration", 10, 5, 15, 1f, CooldownFormat);
             VestKCReset =
-                new CustomNumberOption(num++, "被攻击时凶手冷却重置", 2.5f, 0f, 15f, 0.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Kill Cooldown Reset On Attack", 2.5f, 0f, 15f, 0.5f, CooldownFormat);
             MaxVests =
-                new CustomNumberOption(num++, "最多使用背心次数", 5, 1, 15, 1);
+                new CustomNumberOption(num++, "Maximum Number Of Vests", 5, 1, 15, 1);
 
             Executioner =
-                new CustomHeaderOption(num++, "<color=#8C4005FF>处刑者</color>");
-            OnTargetDead = new CustomStringOption(num++, "目标死亡后处刑人新职业",
-                new[] { "船员", "失忆者", "投机主义者", "小丑" });
+                new CustomHeaderOption(num++, "<color=#8C4005FF>Executioner</color>");
+            OnTargetDead = new CustomStringOption(num++, "Executioner Becomes On Target Dead",
+                new[] { "Crew", "Amnesiac", "Survivor", "Jester" });
             ExecutionerButton =
-                new CustomToggleOption(num++, "处刑者可以召开紧急会议", true);
+                new CustomToggleOption(num++, "Executioner Can Button", true);
 
             Jester =
-                new CustomHeaderOption(num++, "<color=#FFBFCCFF>小丑</color>");
+                new CustomHeaderOption(num++, "<color=#FFBFCCFF>Jester</color>");
             JesterButton =
-                new CustomToggleOption(num++, "小丑可以召开紧急会议", true);
+                new CustomToggleOption(num++, "Jester Can Button", true);
             JesterVent =
-                new CustomToggleOption(num++, "小丑可以跳通风管道", false);
+                new CustomToggleOption(num++, "Jester Can Hide In Vents", false);
 
             Phantom =
-                new CustomHeaderOption(num++, "<color=#662962FF>幻影</color>");
+                new CustomHeaderOption(num++, "<color=#662962FF>Phantom</color>");
             PhantomTasksRemaining =
-                 new CustomNumberOption(num++, "幻影剩余多少任务时可被点击", 5, 1, 10, 1);
+                 new CustomNumberOption(num++, "Tasks Remaining When Phantom Can Be Clicked", 5, 1, 10, 1);
 
-            Arsonist = new CustomHeaderOption(num++, "<color=#FF4D00FF>纵火犯</color>");
+            Arsonist = new CustomHeaderOption(num++, "<color=#FF4D00FF>Arsonist</color>");
             DouseCooldown =
-                new CustomNumberOption(num++, "浇油冷却", 25f, 10f, 40f, 2.5f, CooldownFormat);
-            ArsonistGameEnd = new CustomToggleOption(num++, "当纵火犯存活时游戏不会结束", false);
+                new CustomNumberOption(num++, "Douse Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
+            ArsonistGameEnd = new CustomToggleOption(num++, "Game Continues As Long As Arsonist Is Alive", false);
 
             TheGlitch =
-                new CustomHeaderOption(num++, "<color=#00FF00FF>混沌</color>");
-            MimicCooldownOption = new CustomNumberOption(num++, "模仿冷却", 25f, 10f, 120f, 2.5f, CooldownFormat);
-            MimicDurationOption = new CustomNumberOption(num++, "模仿持续时间", 10f, 1f, 30f, 1f, CooldownFormat);
-            HackCooldownOption = new CustomNumberOption(num++, "黑进冷区", 25f, 10f, 120f, 2.5f, CooldownFormat);
-            HackDurationOption = new CustomNumberOption(num++, "黑进持续时间", 10f, 1f, 30f, 1f, CooldownFormat);
+                new CustomHeaderOption(num++, "<color=#00FF00FF>The Glitch</color>");
+            MimicCooldownOption = new CustomNumberOption(num++, "Mimic Cooldown", 25f, 10f, 120f, 2.5f, CooldownFormat);
+            MimicDurationOption = new CustomNumberOption(num++, "Mimic Duration", 10f, 1f, 30f, 1f, CooldownFormat);
+            HackCooldownOption = new CustomNumberOption(num++, "Hack Cooldown", 25f, 10f, 120f, 2.5f, CooldownFormat);
+            HackDurationOption = new CustomNumberOption(num++, "Hack Duration", 10f, 1f, 30f, 1f, CooldownFormat);
             GlitchKillCooldownOption =
-                new CustomNumberOption(num++, "混沌击杀冷却", 25f, 10f, 120f, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Glitch Kill Cooldown", 25f, 10f, 120f, 2.5f, CooldownFormat);
             GlitchHackDistanceOption =
-                new CustomStringOption(num++, "混沌黑进距离", new[] { "短", "中", "长" });
+                new CustomStringOption(num++, "Glitch Hack Distance", new[] { "Short", "Normal", "Long" });
             GlitchVent =
-                new CustomToggleOption(num++, "混沌可使用通风管道", false);
+                new CustomToggleOption(num++, "Glitch Can Vent", false);
 
             Grenadier =
-                new CustomHeaderOption(num++, "<color=#FF0000FF>掷弹兵</color>");
+                new CustomHeaderOption(num++, "<color=#FF0000FF>Grenadier</color>");
             GrenadeCooldown =
-                new CustomNumberOption(num++, "闪光弹技能冷却时间", 25, 10, 40, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Flash Grenade Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             GrenadeDuration =
-                new CustomNumberOption(num++, "闪光弹技能持续时间", 10, 5, 15, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Flash Grenade Duration", 10, 5, 15, 1f, CooldownFormat);
             FlashRadius =
-                new CustomNumberOption(num++, "闪光弹技能范围", 1f, 0.25f, 5f, 0.25f, MultiplierFormat);
+                new CustomNumberOption(num++, "Flash Radius", 1f, 0.25f, 5f, 0.25f, MultiplierFormat);
+            GrenadierIndicators =
+                new CustomToggleOption(num++, "Indicate Flashed Crewmates", false);
             GrenadierVent =
-                new CustomToggleOption(num++, "掷弹兵可以使用通风口", false);
+                new CustomToggleOption(num++, "Grenadier Can Vent", false);
 
             Morphling =
-                new CustomHeaderOption(num++, "<color=#FF0000FF>化形者</color>");
+                new CustomHeaderOption(num++, "<color=#FF0000FF>Morphling</color>");
             MorphlingCooldown =
-                new CustomNumberOption(num++, "化形冷区", 25, 10, 40, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Morphling Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             MorphlingDuration =
-                new CustomNumberOption(num++, "化形持续时间", 10, 5, 15, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Morphling Duration", 10, 5, 15, 1f, CooldownFormat);
             MorphlingVent =
-                new CustomToggleOption(num++, "可以使用通风管道", false);
+                new CustomToggleOption(num++, "Morphling Can Vent", false);
 
-            Swooper = new CustomHeaderOption(num++, "<color=#FF0000FF>隐身人</color>");
+            Swooper = new CustomHeaderOption(num++, "<color=#FF0000FF>Swooper</color>");
 
             SwoopCooldown =
-                new CustomNumberOption(num++, "隐身冷却", 25, 10, 40, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Swoop Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             SwoopDuration =
-                new CustomNumberOption(num++, "隐身持续时间", 10, 5, 15, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Swoop Duration", 10, 5, 15, 1f, CooldownFormat);
             SwooperVent =
-                new CustomToggleOption(num++, "可以使用通风管道", false);
+                new CustomToggleOption(num++, "Swooper Can Vent", false);
 
             Poisoner =
-                new CustomHeaderOption(num++, "<color=#FF0000FF>绝命毒师</color>");
+                new CustomHeaderOption(num++, "<color=#FF0000FF>Poisoner</color>");
             PoisonCooldown =
-                new CustomNumberOption(num++, "下毒技能冷却时间", 25, 10, 40, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Poison Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             PoisonDuration =
-                new CustomNumberOption(num++, "下毒延迟击杀时间", 5, 1, 15, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Poison Kill Delay", 5, 1, 15, 1f, CooldownFormat);
             PoisonerVent =
-                new CustomToggleOption(num++, "绝命毒师可使用通风口", false);
+                new CustomToggleOption(num++, "Poisoner Can Vent", false);
 
-            Traitor = new CustomHeaderOption(num++, "<color=#FF0000FF>背叛者</color>");
-            LatestSpawn = new CustomNumberOption(num++, "背叛者出现时最少存活玩家数", 5, 2, 15, 1);
+            Traitor = new CustomHeaderOption(num++, "<color=#FF0000FF>Traitor</color>");
+            LatestSpawn = new CustomNumberOption(num++, "Minimum People Alive When Traitor Can Spawn", 5, 2, 15, 1);
             GlitchStopsTraitor =
-                new CustomToggleOption(num++, "混沌存活时背叛者不会出现", false);
+                new CustomToggleOption(num++, "Traitor Won't Spawn If Glitch Is Alive", false);
 
-            Underdog = new CustomHeaderOption(num++, "<color=#FF0000FF>潜伏者</color>");
-            UnderdogKillBonus = new CustomNumberOption(num++, "击杀冷却时间加减值", 5, 2.5f, 30, 2.5f, CooldownFormat);
-            UnderdogIncreasedKC = new CustomToggleOption(num++, "队友存活时击杀冷却时间增加", true);
+            Underdog = new CustomHeaderOption(num++, "<color=#FF0000FF>Underdog</color>");
+            UnderdogKillBonus = new CustomNumberOption(num++, "Kill Cooldown Bonus", 5, 2.5f, 30, 2.5f, CooldownFormat);
+            UnderdogIncreasedKC = new CustomToggleOption(num++, "Increased Kill Cooldown When 2+ Imps", true);
 
-            Blackmailer = new CustomHeaderOption(num++, "<color=#FF0000FF>勒索者</color>");
+            Blackmailer = new CustomHeaderOption(num++, "<color=#FF0000FF>Blackmailer</color>");
             BlackmailCooldown =
-                new CustomNumberOption(num++, "初始勒索冷却时间", 10, 1, 15, 1f, CooldownFormat);
+                new CustomNumberOption(num++, "Initial Blackmail Cooldown", 10, 1, 15, 1f, CooldownFormat);
 
-            Miner = new CustomHeaderOption(num++, "<color=#FF0000FF>管道工</color>");
+            Miner = new CustomHeaderOption(num++, "<color=#FF0000FF>Miner</color>");
             MineCooldown =
-                new CustomNumberOption(num++, "布置管道冷却", 25, 10, 40, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Mine Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
 
-            Undertaker = new CustomHeaderOption(num++, "<color=#FF0000FF>送葬者</color>");
-            DragCooldown = new CustomNumberOption(num++, "拖尸技能冷却时间", 25, 10, 40, 2.5f, CooldownFormat);
+            Undertaker = new CustomHeaderOption(num++, "<color=#FF0000FF>Undertaker</color>");
+            DragCooldown = new CustomNumberOption(num++, "Drag Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             UndertakerVent =
-                new CustomToggleOption(num++, "送葬者可以使用通风口", false);
+                new CustomToggleOption(num++, "Undertaker Can Vent", false);
             UndertakerVentWithBody =
-                new CustomToggleOption(num++, "送葬者可以在拖动时使用通风口", false);
+                new CustomToggleOption(num++, "Undertaker Can Vent While Dragging", false);
+
+            Bait = new CustomHeaderOption(num++, "<color=#00B3B3FF>Bait</color>");
+            BaitMinDelay = new CustomNumberOption(num++, "Minimum Delay for the Bait Report", 0f, 0f, 15f, 0.5f, CooldownFormat);
+            BaitMaxDelay = new CustomNumberOption(num++, "Maximum Delay for the Bait Report", 1f, 0f, 15f, 0.5f, CooldownFormat);
+
+            Diseased = new CustomHeaderOption(num++, "<color=#808080FF>Diseased</color>");
+            DiseasedKillMultiplier = new CustomNumberOption(num++, "Diseased Kill Multiplier", 3f, 1.5f, 5f, 0.5f, MultiplierFormat);
+
+            Flash = new CustomHeaderOption(num++, "<color=#FF8080FF>Flash</color>");
+            FlashSpeed = new CustomNumberOption(num++, "Flash Speed", 1.25f, 1.05f, 2.5f, 0.05f, MultiplierFormat);
+
+            Giant = new CustomHeaderOption(num++, "<color=#FFB34DFF>Giant</color>");
+            GiantSlow = new CustomNumberOption(num++, "Giant Speed", 0.75f, 0.5f, 1f, 0.05f, MultiplierFormat);
 
             Lovers =
-                new CustomHeaderOption(num++, "<color=#FF66CCFF>恋人</color>");
-            BothLoversDie = new CustomToggleOption(num++, "恋人同死");
-            LovingImpPercent = new CustomNumberOption(num++, "伪装者恋人概率", 20f, 0f, 100f, 10f,
+                new CustomHeaderOption(num++, "<color=#FF66CCFF>Lovers</color>");
+            BothLoversDie = new CustomToggleOption(num++, "Both Lovers Die");
+            LovingImpPercent = new CustomNumberOption(num++, "Loving Impostor Probability", 20f, 0f, 100f, 10f,
                 PercentFormat);
-            NeutralLovers = new CustomToggleOption(num++, "独立职业可以成为恋人");
+            NeutralLovers = new CustomToggleOption(num++, "Neutral Roles Can Be Lovers");
         }
     }
 }

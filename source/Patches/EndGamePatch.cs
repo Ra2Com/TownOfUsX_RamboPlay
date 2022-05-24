@@ -35,71 +35,71 @@ namespace TownOfUs.Patches {
                 playerRole = "";
                 foreach (var role in Role.RoleHistory.Where(x => x.Key == playerControl.PlayerId))
                 {
-                    if (role.Value == RoleEnum.Crewmate) {playerRole += "<color=#"+Patches.Colors.Crewmate.ToHtmlStringRGBA()+">船员</color> > ";}
-                    else if (role.Value == RoleEnum.Impostor) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">伪装者</color> > ";}
-                    else if (role.Value == RoleEnum.Altruist) {playerRole += "<color=#"+Patches.Colors.Altruist.ToHtmlStringRGBA()+">殉道师</color> > ";}
-                    else if (role.Value == RoleEnum.Engineer) {playerRole += "<color=#"+Patches.Colors.Engineer.ToHtmlStringRGBA()+">工程师</color> > ";}
-                    else if (role.Value == RoleEnum.Investigator) {playerRole += "<color=#"+Patches.Colors.Investigator.ToHtmlStringRGBA()+">侦探</color> > ";}
-                    else if (role.Value == RoleEnum.Mayor) {playerRole += "<color=#"+Patches.Colors.Mayor.ToHtmlStringRGBA()+">市长</color> > ";}
-                    else if (role.Value == RoleEnum.Medic) {playerRole += "<color=#"+Patches.Colors.Medic.ToHtmlStringRGBA()+">医生</color> > ";}
-                    else if (role.Value == RoleEnum.Sheriff) {playerRole += "<color=#"+Patches.Colors.Sheriff.ToHtmlStringRGBA()+">警长</color> > ";}
-                    else if (role.Value == RoleEnum.Swapper) {playerRole += "<color=#"+Patches.Colors.Swapper.ToHtmlStringRGBA()+">换票师</color> > ";}
-                    else if (role.Value == RoleEnum.TimeLord) {playerRole += "<color=#"+Patches.Colors.TimeLord.ToHtmlStringRGBA()+">时间之主</color> > ";}
-                    else if (role.Value == RoleEnum.Seer) {playerRole += "<color=#"+Patches.Colors.Seer.ToHtmlStringRGBA()+">预言家</color> > ";}
-                    else if (role.Value == RoleEnum.Snitch) {playerRole += "<color=#"+Patches.Colors.Snitch.ToHtmlStringRGBA()+">告密者</color> > ";}
-                    else if (role.Value == RoleEnum.Spy) {playerRole += "<color=#"+Patches.Colors.Spy.ToHtmlStringRGBA()+">间谍</color> > ";}
-                    else if (role.Value == RoleEnum.Vigilante) {playerRole += "<color=#"+Patches.Colors.Vigilante.ToHtmlStringRGBA()+">侠客</color> > "; }
-                    else if (role.Value == RoleEnum.Arsonist) {playerRole += "<color=#"+Patches.Colors.Arsonist.ToHtmlStringRGBA()+">纵火犯</color> > ";}
-                    else if (role.Value == RoleEnum.Executioner) {playerRole += "<color=#"+Patches.Colors.Executioner.ToHtmlStringRGBA()+">行刑者</color> > ";}
-                    else if (role.Value == RoleEnum.Glitch) {playerRole += "<color=#"+Patches.Colors.Glitch.ToHtmlStringRGBA()+">混沌</color> > ";}
-                    else if (role.Value == RoleEnum.Jester) {playerRole += "<color=#"+Patches.Colors.Jester.ToHtmlStringRGBA()+">小丑</color> > ";}
-                    else if (role.Value == RoleEnum.Phantom) {playerRole += "<color=#"+Patches.Colors.Phantom.ToHtmlStringRGBA()+">幻影</color> > ";}
-                    //else if (role.Value == RoleEnum.Assassin) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">刺客</color> > ";}
-                    //else if (role.Value == RoleEnum.Camouflager) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">隐蔽者</color> > ";}
-                    else if (role.Value == RoleEnum.Grenadier) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">掷弹兵</color> > ";}
-                    else if (role.Value == RoleEnum.Janitor) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">清理者</color> > ";}
-                    else if (role.Value == RoleEnum.Miner) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">管道工</color> > ";}
-                    else if (role.Value == RoleEnum.Morphling) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">化形者</color> > ";}
-                    else if (role.Value == RoleEnum.Swooper) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">隐身人</color> > ";}
-                    else if (role.Value == RoleEnum.Underdog) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">潜伏者</color> > ";}
-                    else if (role.Value == RoleEnum.Undertaker) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">送葬者</color> > "; }
-                    else if (role.Value == RoleEnum.Haunter) { playerRole += "<color=#"+Patches.Colors.Haunter.ToHtmlStringRGBA()+">冤魂</color> > "; }
-                    else if (role.Value == RoleEnum.Grenadier) { playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">掷弹兵</color> > "; }
-                    else if (role.Value == RoleEnum.Veteran) { playerRole += "<color=#"+Patches.Colors.Veteran.ToHtmlStringRGBA()+">老兵</color> > "; }
-                    else if (role.Value == RoleEnum.Amnesiac) { playerRole += "<color=#"+Patches.Colors.Amnesiac.ToHtmlStringRGBA()+">失忆者</color> > "; }
-                    else if (role.Value == RoleEnum.Juggernaut) { playerRole += "<color=#"+Patches.Colors.Juggernaut.ToHtmlStringRGBA()+">天启</color> > "; }
-                    else if (role.Value == RoleEnum.Tracker) { playerRole += "<color=#"+Patches.Colors.Tracker.ToHtmlStringRGBA()+">追踪者</color> > "; }
-                    else if (role.Value == RoleEnum.Poisoner) { playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">绝命毒师</color> > "; }
-                    else if (role.Value == RoleEnum.Transporter) { playerRole += "<color=#" + Patches.Colors.Transporter.ToHtmlStringRGBA() + ">传送师</color> > "; }
-                    else if (role.Value == RoleEnum.Traitor) { playerRole += "<color=#" + Patches.Colors.Impostor.ToHtmlStringRGBA() + ">背叛者</color> > "; }
-                    else if (role.Value == RoleEnum.Medium) { playerRole += "<color=#" + Patches.Colors.Medium.ToHtmlStringRGBA() + ">通灵师</color> > "; }
-                    else if (role.Value == RoleEnum.Survivor) { playerRole += "<color=#" + Patches.Colors.Survivor.ToHtmlStringRGBA() + ">投机主义者</color> > "; }
-                    else if (role.Value == RoleEnum.GuardianAngel) { playerRole += "<color=#" + Patches.Colors.GuardianAngel.ToHtmlStringRGBA() + ">守护天使</color> > "; }
-                    else if (role.Value == RoleEnum.Mystic) { playerRole += "<color=#" + Patches.Colors.Mystic.ToHtmlStringRGBA() + ">灵媒</color> > "; }
-                    else if (role.Value == RoleEnum.Blackmailer) { playerRole += "<color=#" + Patches.Colors.Impostor.ToHtmlStringRGBA() + ">勒索者</color> > "; }
+                    if (role.Value == RoleEnum.Crewmate) {playerRole += "<color=#"+Patches.Colors.Crewmate.ToHtmlStringRGBA()+">Crewmate</color> > ";}
+                    else if (role.Value == RoleEnum.Impostor) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Impostor</color> > ";}
+                    else if (role.Value == RoleEnum.Altruist) {playerRole += "<color=#"+Patches.Colors.Altruist.ToHtmlStringRGBA()+">Altruist</color> > ";}
+                    else if (role.Value == RoleEnum.Engineer) {playerRole += "<color=#"+Patches.Colors.Engineer.ToHtmlStringRGBA()+">Engineer</color> > ";}
+                    else if (role.Value == RoleEnum.Investigator) {playerRole += "<color=#"+Patches.Colors.Investigator.ToHtmlStringRGBA()+">Investigator</color> > ";}
+                    else if (role.Value == RoleEnum.Mayor) {playerRole += "<color=#"+Patches.Colors.Mayor.ToHtmlStringRGBA()+">Mayor</color> > ";}
+                    else if (role.Value == RoleEnum.Medic) {playerRole += "<color=#"+Patches.Colors.Medic.ToHtmlStringRGBA()+">Medic</color> > ";}
+                    else if (role.Value == RoleEnum.Sheriff) {playerRole += "<color=#"+Patches.Colors.Sheriff.ToHtmlStringRGBA()+">Sheriff</color> > ";}
+                    else if (role.Value == RoleEnum.Swapper) {playerRole += "<color=#"+Patches.Colors.Swapper.ToHtmlStringRGBA()+">Swapper</color> > ";}
+                    else if (role.Value == RoleEnum.TimeLord) {playerRole += "<color=#"+Patches.Colors.TimeLord.ToHtmlStringRGBA()+">Time Lord</color> > ";}
+                    else if (role.Value == RoleEnum.Seer) {playerRole += "<color=#"+Patches.Colors.Seer.ToHtmlStringRGBA()+">Seer</color> > ";}
+                    else if (role.Value == RoleEnum.Snitch) {playerRole += "<color=#"+Patches.Colors.Snitch.ToHtmlStringRGBA()+">Snitch</color> > ";}
+                    else if (role.Value == RoleEnum.Spy) {playerRole += "<color=#"+Patches.Colors.Spy.ToHtmlStringRGBA()+">Spy</color> > ";}
+                    else if (role.Value == RoleEnum.Vigilante) {playerRole += "<color=#"+Patches.Colors.Vigilante.ToHtmlStringRGBA()+">Vigilante</color> > "; }
+                    else if (role.Value == RoleEnum.Arsonist) {playerRole += "<color=#"+Patches.Colors.Arsonist.ToHtmlStringRGBA()+">Arsonist</color> > ";}
+                    else if (role.Value == RoleEnum.Executioner) {playerRole += "<color=#"+Patches.Colors.Executioner.ToHtmlStringRGBA()+">Executioner</color> > ";}
+                    else if (role.Value == RoleEnum.Glitch) {playerRole += "<color=#"+Patches.Colors.Glitch.ToHtmlStringRGBA()+">The Glitch</color> > ";}
+                    else if (role.Value == RoleEnum.Jester) {playerRole += "<color=#"+Patches.Colors.Jester.ToHtmlStringRGBA()+">Jester</color> > ";}
+                    else if (role.Value == RoleEnum.Phantom) {playerRole += "<color=#"+Patches.Colors.Phantom.ToHtmlStringRGBA()+">Phantom</color> > ";}
+                    //else if (role.Value == RoleEnum.Assassin) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Assassin</color> > ";}
+                    //else if (role.Value == RoleEnum.Camouflager) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Camouflager</color> > ";}
+                    else if (role.Value == RoleEnum.Grenadier) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Grenadier</color> > ";}
+                    else if (role.Value == RoleEnum.Janitor) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Janitor</color> > ";}
+                    else if (role.Value == RoleEnum.Miner) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Miner</color> > ";}
+                    else if (role.Value == RoleEnum.Morphling) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Morphling</color> > ";}
+                    else if (role.Value == RoleEnum.Swooper) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Swooper</color> > ";}
+                    else if (role.Value == RoleEnum.Underdog) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Underdog</color> > ";}
+                    else if (role.Value == RoleEnum.Undertaker) {playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Undertaker</color> > "; }
+                    else if (role.Value == RoleEnum.Haunter) { playerRole += "<color=#"+Patches.Colors.Haunter.ToHtmlStringRGBA()+">Haunter</color> > "; }
+                    else if (role.Value == RoleEnum.Grenadier) { playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Grenadier</color> > "; }
+                    else if (role.Value == RoleEnum.Veteran) { playerRole += "<color=#"+Patches.Colors.Veteran.ToHtmlStringRGBA()+">Veteran</color> > "; }
+                    else if (role.Value == RoleEnum.Amnesiac) { playerRole += "<color=#"+Patches.Colors.Amnesiac.ToHtmlStringRGBA()+">Amnesiac</color> > "; }
+                    else if (role.Value == RoleEnum.Juggernaut) { playerRole += "<color=#"+Patches.Colors.Juggernaut.ToHtmlStringRGBA()+">Juggernaut</color> > "; }
+                    else if (role.Value == RoleEnum.Tracker) { playerRole += "<color=#"+Patches.Colors.Tracker.ToHtmlStringRGBA()+">Tracker</color> > "; }
+                    else if (role.Value == RoleEnum.Poisoner) { playerRole += "<color=#"+Patches.Colors.Impostor.ToHtmlStringRGBA()+">Poisoner</color> > "; }
+                    else if (role.Value == RoleEnum.Transporter) { playerRole += "<color=#" + Patches.Colors.Transporter.ToHtmlStringRGBA() + ">Transporter</color> > "; }
+                    else if (role.Value == RoleEnum.Traitor) { playerRole += "<color=#" + Patches.Colors.Impostor.ToHtmlStringRGBA() + ">Traitor</color> > "; }
+                    else if (role.Value == RoleEnum.Medium) { playerRole += "<color=#" + Patches.Colors.Medium.ToHtmlStringRGBA() + ">Medium</color> > "; }
+                    else if (role.Value == RoleEnum.Survivor) { playerRole += "<color=#" + Patches.Colors.Survivor.ToHtmlStringRGBA() + ">Survivor</color> > "; }
+                    else if (role.Value == RoleEnum.GuardianAngel) { playerRole += "<color=#" + Patches.Colors.GuardianAngel.ToHtmlStringRGBA() + ">Guardian Angel</color> > "; }
+                    else if (role.Value == RoleEnum.Mystic) { playerRole += "<color=#" + Patches.Colors.Mystic.ToHtmlStringRGBA() + ">Mystic</color> > "; }
+                    else if (role.Value == RoleEnum.Blackmailer) { playerRole += "<color=#" + Patches.Colors.Impostor.ToHtmlStringRGBA() + ">Blackmailer</color> > "; }
                 }
                 playerRole = playerRole.Remove(playerRole.Length - 3);
 
                 if (playerControl.Is(ModifierEnum.Giant)) {
-                    playerRole += " (<color=#" + Patches.Colors.Giant.ToHtmlStringRGBA() + ">巨人</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Giant.ToHtmlStringRGBA() + ">Giant</color>)";
                 } else if (playerControl.Is(ModifierEnum.ButtonBarry)) {
-                    playerRole += " (<color=#" + Patches.Colors.ButtonBarry.ToHtmlStringRGBA() + ">按钮人</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.ButtonBarry.ToHtmlStringRGBA() + ">Button Barry</color>)";
                 } else if (playerControl.Is(ModifierEnum.Bait)) {
-                    playerRole += " (<color=#" + Patches.Colors.Bait.ToHtmlStringRGBA() + ">诱饵</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Bait.ToHtmlStringRGBA() + ">Bait</color>)";
                 } else if (playerControl.Is(ModifierEnum.Diseased)) {
-                    playerRole += " (<color=#" + Patches.Colors.Diseased.ToHtmlStringRGBA() + ">病人</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Diseased.ToHtmlStringRGBA() + ">Diseased</color>)";
                 } else if (playerControl.Is(ModifierEnum.Drunk)) {
-                    playerRole += " (<color=#" + Patches.Colors.Drunk.ToHtmlStringRGBA() + ">醉鬼</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Drunk.ToHtmlStringRGBA() + ">Drunk</color>)";
                 } else if (playerControl.Is(ModifierEnum.Flash)) {
-                    playerRole += " (<color=#" + Patches.Colors.Flash.ToHtmlStringRGBA() + ">闪电侠</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Flash.ToHtmlStringRGBA() + ">Flash</color>)";
                 } else if (playerControl.Is(ModifierEnum.Tiebreaker)) {
-                    playerRole += " (<color=#" + Patches.Colors.Tiebreaker.ToHtmlStringRGBA() + ">破平者</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Tiebreaker.ToHtmlStringRGBA() + ">Tiebreaker</color>)";
                 } else if (playerControl.Is(ModifierEnum.Torch)) {
-                    playerRole += " (<color=#" + Patches.Colors.Torch.ToHtmlStringRGBA() + ">火炬</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Torch.ToHtmlStringRGBA() + ">Torch</color>)";
                 } else if (playerControl.Is(ModifierEnum.Lover)) {
-                    playerRole += " (<color=#" + Patches.Colors.Lovers.ToHtmlStringRGBA() + ">恋人</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Lovers.ToHtmlStringRGBA() + ">Lover</color>)";
                 } else if (playerControl.Is(ModifierEnum.Sleuth)) {
-                    playerRole += " (<color=#" + Patches.Colors.Sleuth.ToHtmlStringRGBA() + ">掘墓人</color>)";
+                    playerRole += " (<color=#" + Patches.Colors.Sleuth.ToHtmlStringRGBA() + ">Sleuth</color>)";
                 }  
                 AdditionalTempData.playerRoles.Add(new AdditionalTempData.PlayerRoleInfo() { PlayerName = playerControl.Data.PlayerName, Role = playerRole });
             }

@@ -5,12 +5,11 @@ namespace TownOfUs.Roles.Modifiers
 {
     public class Giant : Modifier, IVisualAlteration
     {
-        public static float SpeedFactor = 0.7f;
-        
         public Giant(PlayerControl player) : base(player)
         {
-            Name = "巨人";
-            TaskText = () => "好大好慢.jpg";
+            var slowText = CustomGameOptions.GiantSlow != 1? " and slow!" : "!";
+            Name = "Giant";
+            TaskText = () => "You are ginormous" + slowText;
             Color = Patches.Colors.Giant;
             ModifierType = ModifierEnum.Giant;
         }
@@ -18,7 +17,7 @@ namespace TownOfUs.Roles.Modifiers
         public bool TryGetModifiedAppearance(out VisualAppearance appearance)
         {
             appearance = Player.GetDefaultAppearance();
-            appearance.SpeedFactor = SpeedFactor;
+            appearance.SpeedFactor = CustomGameOptions.GiantSlow;
             appearance.SizeFactor = new Vector3(1.0f, 1.0f, 1.0f);
             return true;
         }

@@ -54,6 +54,7 @@ namespace TownOfUs
                         if (CustomGameOptions.KilledOnAlert && !target.IsProtected())
                         {
                             Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, target);
+                            PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                         }
                     }
                     else

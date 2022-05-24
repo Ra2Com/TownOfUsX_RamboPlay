@@ -6,8 +6,8 @@ namespace TownOfUs.Roles.Modifiers
     {
         public Diseased(PlayerControl player) : base(player)
         {
-            Name = "病人";
-            TaskText = () => "杀死你的伪装者将获得极高的冷却";
+            Name = "Diseased";
+            TaskText = () => "Killing you gives Impostors a high cooldown";
             Color = Patches.Colors.Diseased;
             ModifierType = ModifierEnum.Diseased;
         }

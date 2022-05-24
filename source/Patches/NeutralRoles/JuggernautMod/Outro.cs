@@ -17,7 +17,7 @@ namespace TownOfUs.NeutralRoles.JuggernautMod
             array[0].NameText.text = role.ColorString + array[0].NameText.text + "</color>";
             __instance.BackgroundBar.material.color = role.Color;
             var text = Object.Instantiate(__instance.WinText);
-            text.text = "天启杀疯了！";
+            text.text = "Juggernaut wins";
             text.color = role.Color;
             var pos = __instance.WinText.transform.localPosition;
             pos.y = 1.5f;
